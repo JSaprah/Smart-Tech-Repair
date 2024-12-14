@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-d3z-5k3wl7!!si2ohbk_&9e9cmeu!ez8tqw7n%pn#k_z87(xd1
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "8000-jsaprah-smarttechrepair-81uo43ulj59.ws.codeinstitute-ide.net"
+    '8000-jsaprah-smarttechrepair-81uo43ulj59.ws.codeinstitute-ide.net',
+    '.herokuapp.com'
     ]
 
 
