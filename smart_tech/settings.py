@@ -58,7 +58,6 @@ MIDDLEWARE = [
 ]
 
 
-
 ROOT_URLCONF = 'smart_tech.urls'
 
 TEMPLATES = [
@@ -93,6 +92,11 @@ WSGI_APPLICATION = 'smart_tech.wsgi.application'
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.codeinstitute-ide.net/",
+    "https://*.herokuapp.com"
+]
 
 
 # Password validation
