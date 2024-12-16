@@ -6,44 +6,44 @@ MANUFACTURER = ((0, "Apple"), (1, "Samsung"))
 MAKE = ("")
 REPAIR_DURATION = 1
 PART = (
-    "Diagnostic Services",
-    "Screen Replacement",
-    "Battery Replacement",
-    "Charging port Replacement",
-    "Headphone Jack Repair",
-    "Microphone Repair",
-    "Loudspeaker Repair",
-    "Speaker Repair",
-    "Rear Camera Repair",
-    "Front Camera Repair",
-    "Backglass Repair",
-    "Rear housing Replacement"
+    (1, "Diagnostic Services"),
+    (2, "Screen Replacement"),
+    (3, "Battery Replacement"),
+    (4, "Charging port Replacement"),
+    (5, "Headphone Jack Repair"),
+    (6, "Microphone Repair"),
+    (7, "Loudspeaker Repair"),
+    (8, "Speaker Repair"),
+    (9, "Rear Camera Repair"),
+    (10, "Front Camera Repair"),
+    (11, "Backglass Repair"),
+    (12, "Rear housing Replacement"),
 )
 
 
 # Create your models here.
-class device(models.Model):
+class Device(models.Model):
     manufacturer = models.IntegerField(choices=MANUFACTURER)
     make = models.IntegerField(choices=MAKE)
 
 
-class part(models.Model):
-    device_part = models.Choices(PART)
+class Part(models.Model):
+    device_part = models.TextField(choices=PART)
 
 
-class customer(models.Model):
+class Customer(models.Model):
     requester = models.ForeignKey(User, on_delete=models.CASCADE)
     email = models.EmailField()
     phone = models.CharField(max_length=15, blank=False)
 
 
-class catalogue(models.Models):
-    device = models.ForeignKey(device, on_delete=models.CASCADE)
-    device_part = models.ForeignKey(part, on_delete=models.CASCADE)
+class Catalogue(models.Model):
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    device_part = models.ForeignKey(Part, on_delete=models.CASCADE)
     price = models.CharField()
 
 
-class ticket(models.Model):
+class Ticket(models.Model):
     ticketnumber = models.AutoField(primary_key=True, editable=False)
     imei = models.CharField(max_length=200, unique=True)
     description = models.TextField()
@@ -51,6 +51,6 @@ class ticket(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     booking_date = models.DateTimeField()
     duration = models.IntegerField(REPAIR_DURATION)
-    damage = models.ForeignKey(part, on_delete=models.CASCADE)
-    device = models.ForeignKey(device, on_delete=models.CASCADE)
-    customer = models.ForeignKey(customer, on_delete=models.CASCADE)
+    damage = models.ForeignKey(Part, on_delete=models.CASCADE)
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)

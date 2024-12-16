@@ -31,8 +31,12 @@ In this sprint I prepared myself for the project by setting up the environment, 
 
 Make the scope of the project smaller by:
 1. Building the application for the device type phones only. Initially, I wanted to go with the categories laptops, tablets and phones. Looking at the time constraints I decided to focus on the functionality rather than different types of devices. 
-2. For the brands, I chose to go with the two biggest ones Apple and Samsung. As these are the ones with the highest requests.
+2. For the brands, I chose to go with the two biggest ones Apple and Samsung. As these are the ones with the highest number of requests.
 3. Dropping the invoice functionality. Adding this to the future enhancements. For now I want to focus only on the booking system with the CRUD functionality. 
+
+Other considerations
+
+Different services take different amount of times. However, for this project, I will consider each service to have a duration of one hour.
 
 ## User stories
 

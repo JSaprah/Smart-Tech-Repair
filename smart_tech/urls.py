@@ -19,6 +19,8 @@ from django.urls import path
 from book_repair import views as booking_views
 
 urlpatterns = [
-    path("booking/", booking_views.booking, name='booking'),
     path('admin/', admin.site.urls),
+    path('booking/', booking_views.Booking)
+    # path("booking/", booking_views, name='booking'),
+    # path("", )
 ]
