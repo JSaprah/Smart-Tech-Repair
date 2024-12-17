@@ -1,0 +1,15 @@
+/*--------------------------------------------Colors*/
+
+body{
+    background-color: papayawhip;
+}
+
+/*--------------------------------------------Heading*/
+.logo {
+    background: url("../css/images/smarttech_logo.PNG");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 150px;
+
+}
