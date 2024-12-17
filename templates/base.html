@@ -24,21 +24,21 @@
 
         <div class="row no-gutters">
 
-            <a class="logo col-md-2" href="">Smart Tech Repair</a>
+            <a class="logo col-md-2" href="{% url 'home' %}">Smart Tech Repair</a>
 
             <div class="col-md-10 navcontainer">
                 <div class="col menu">
                     <ul id="navigation" class="list-inline">
                         <li class="col-md-3 list-inline-item nav-item">
-                            <a href="{% url 'home' %}"><span>Home</span></a>
+                            <a href="{% url 'home' %}" class= "nav-active {% if request.path == '/' %}active{% endif %}">Home</a>
                         </li>
 
                         <li class="col-md-3 list-inline-item nav-item">
-                            <a href="{% url 'booking'%}"><span>Book Repair</span></a>
+                            <a href="{% url 'booking'%}" class= "nav-active {% if request.path == '/booking/' %}active{% endif %}">Book Repair</a>
                         </li>
 
                         <li class="col-md-3 list-inline-item nav-item">
-                            <a href="{% url 'login'%}"><span>Login</span></a>
+                            <a href="{% url 'login'%}" class= "nav-active {% if request.path == '/login/' %}active{% endif %}">Login</a>
                         </li>
                     </ul>
                 </div>
@@ -62,13 +62,13 @@
             <div class="col">
                 <ul class="list-inline footer-container">
                     <li class="list-inline-item col-md-3">
-                        <a target="_blank" href="#">
+                        <a target="_blank" href="https://en-gb.facebook.com/login/">
                             <i class="fa fa-facebook social-link" aria-hidden="true"></i>
                             <span class="sr-only">Facebook</span>
                         </a>
                     </li>
                     <li class="list-inline-item col-md-3">
-                        <a target="_blank" href="#">
+                        <a target="_blank" href="https://www.instagram.com/">
                             <i class="fa fa-instagram social-link" aria-hidden="true"></i>
                             <span class="sr-only">Instagram</span>
                         </a>
