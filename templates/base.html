@@ -9,46 +9,83 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!--Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        type="text/css" />
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        type="text/css" />
     <!-- Custom CSS -->
-     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Smart Tech Repair</title>
 </head>
 
 <body>
     <header>
-        <div class="row">
-            <a class="col-md-4 logo" href=""></a>
-            <div class="col-md-8">
-                <div class="row bg-color-name-title">
-                    <div class="">
-                    </div>
-                    <div class="row no-gutters">
-                        <div class="col">
-                            <ul id="nav" class="list-inline menucontainer">
-                                <li class="col-6 col-sm-3 ui-menu-color-home list-inline-item">
-                                    <a href="#"><span>Home</span></a>
-                                </li>
-                                <li class="col-6 col-sm-3 ui-menu-color-resume list-inline-item">
-                                    <a href="#"><span>Book repair</span></a>
-                                </li>
-                                <li class="col-6 col-sm-3 ui-menu-color-contact list-inline-item">
-                                    <a href="#"><span>Login</span></a>
-                                </li>
-                            </ul>
-                        </div>
+
+        <div class="row no-gutters">
+
+            <a class="logo col-md-2" href="">Smart Tech Repair</a>
+
+            <div class="col-md-10 navcontainer">
+                <div class="col menu">
+                    <ul id="navigation" class="list-inline">
+                        <li class="col-md-3 list-inline-item nav-item">
+                            <a href="#"><span>Home</span></a>
+                        </li>
+
+                        <li class="col-md-3 list-inline-item nav-item">
+                            <a href="#"><span>Book Repair</span></a>
+                        </li>
+
+                        <li class="col-md-3 list-inline-item nav-item">
+                            <a href="#"><span>Login</span></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            
+
         </div>
+
     </header>
+
     <section>
-        
+
+        {% block content %}{% endblock %}
+
     </section>
-    <footer>
-        
+
+
+    <footer class="container-fluid">
+
+        <div class="row no-gutters">
+
+            <div class="col">
+                <ul class="list-inline footer-container">
+                    <li class="list-inline-item col-md-3">
+                        <a target="_blank" href="#">
+                            <i class="fa fa-facebook social-link" aria-hidden="true"></i>
+                            <span class="sr-only">Facebook</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item col-md-3">
+                        <a target="_blank" href="#">
+                            <i class="fa fa-instagram social-link" aria-hidden="true"></i>
+                            <span class="sr-only">Instagram</span>
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item col-md-3">
+                        <a target="_blank" href="#">
+                            <i class="fa fa-google social-link" aria-hidden="true"></i>
+                            <span class="sr-only">Google</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+
     </footer>
 </body>
 
