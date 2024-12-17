@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Testing the template</h1>
+<p>
+   {% for customer in customers%}
+
+   {{ customer.first_name}}
+
+   {% endfor%}
+</p>
+
+{% endblock content %}

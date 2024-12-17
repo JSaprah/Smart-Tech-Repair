@@ -1,10 +1,15 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.views import generic
-# from .models import Device
+# from django.http import HttpResponse
+# from django.views import generic
+from .models import Customer
 
 
 # Create your views here.
-class booking(generic.ListView):
-    # queryset = Device.objects.all()
-    template_name = "part_list.html"
+def customer_list(request):
+    customers = Customer.objects.all()
+
+    context = {
+        'customers': customers,
+    }
+
+    return render(request, 'book_repair/customer_list.html', context)
