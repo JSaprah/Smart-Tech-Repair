@@ -2,9 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 
 STATUS = ((0, "Pending"), (1, "In progress"), (2, "Completed"))
-MANUFACTURER = ((0, "Apple"), (1, "Samsung"))
-MAKE = ("")
-REPAIR_DURATION = 1
+# MANUFACTURER = ((0, "Apple"), (1, "Samsung"))
+# MAKE = ((1, "iPhone 16"), (2, "iPhone 15"))
+# REPAIR_DURATION = 1
 PART = (
     (1, "Diagnostic Services"),
     (2, "Screen Replacement"),
@@ -22,35 +22,48 @@ PART = (
 
 
 # Create your models here.
-class Device(models.Model):
-    manufacturer = models.IntegerField(choices=MANUFACTURER)
-    make = models.IntegerField(choices=MAKE)
-
-
-class Part(models.Model):
-    device_part = models.TextField(choices=PART)
-
 
 class Customer(models.Model):
-    requester = models.ForeignKey(User, on_delete=models.CASCADE)
-    email = models.EmailField()
-    phone = models.CharField(max_length=15, blank=False)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    phone_number = models.CharField(max_length=15)
+    # requester = models.ForeignKey(User, on_delete=models.CASCADE) 
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
 
-class Catalogue(models.Model):
-    device = models.ForeignKey(Device, on_delete=models.CASCADE)
-    device_part = models.ForeignKey(Part, on_delete=models.CASCADE)
-    price = models.CharField()
+class Device(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    manufacturer = models.CharField(max_length=50)
+    make = models.CharField(max_length=100)
+    imei = models.CharField(max_length=15, unique=True)
+    issue_description = models.TextField()
+    # manufacturer = models.IntegerField(choices=MANUFACTURER) #brand
+
+    def __str__(self):
+        return f"{self.manufacturer} {self.make} - {self.customer}"
+
+
+class Service(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.name
 
 
 class Ticket(models.Model):
-    ticketnumber = models.AutoField(primary_key=True, editable=False)
-    imei = models.CharField(max_length=200, unique=True)
-    description = models.TextField()
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True)
+    booking_date = models.DateTimeField()
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
-    booking_date = models.DateTimeField()
-    duration = models.IntegerField(REPAIR_DURATION)
-    damage = models.ForeignKey(Part, on_delete=models.CASCADE)
-    device = models.ForeignKey(Device, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    duration = models.IntegerField()
+    # ticketnumber = models.AutoField(primary_key=True, editable=False)
+
+    def __str__(self):
+        return f"Repair for{self.device} {self.status}"
+

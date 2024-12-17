@@ -1,9 +1,8 @@
 from django.contrib import admin
-from .models import Part, Customer, Device, Ticket, Catalogue
+from .models import Customer, Device, Ticket, Service
 
 # Register your models here.
-admin.site.register(Part)
 admin.site.register(Customer)
 admin.site.register(Device)
 admin.site.register(Ticket)
-admin.site.register(Catalogue)
+admin.site.register(Service)
