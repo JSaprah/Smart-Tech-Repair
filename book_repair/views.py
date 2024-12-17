@@ -5,6 +5,15 @@ from .models import Customer
 
 
 # Create your views here.
+
+def home(request):
+    return render(request, "book_repair/index.html")
+
+
+def login(request):
+    return render(request, "book_repair/login.html")
+
+
 def customer_list(request):
     customers = Customer.objects.all()
 

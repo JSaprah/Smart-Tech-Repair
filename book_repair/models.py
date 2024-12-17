@@ -66,4 +66,3 @@ class Ticket(models.Model):
 
     def __str__(self):
         return f"Repair for{self.device} {self.status}"
-
