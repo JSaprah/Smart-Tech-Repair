@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h5>Select model</h5>
+
+<!--Phone model-->
+<label for="searchPhone">Search</label>
+<input type="text" id="searchPhone" oninput="filterList()" placeholder="Type to filter">
+
+<div class="row">
+   {% for phone in phones %}
+
+   <a href="" class="col-md-2 p-3 m-3 phone-model-card">
+      {{ phone.series }} {{ phone.make }}
+   </a>
+
+   {% endfor%}
+</div>
+
+
+
+{% endblock content %}

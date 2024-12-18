@@ -1,24 +1,29 @@
 from django.shortcuts import render
 # from django.http import HttpResponse
 # from django.views import generic
-from .models import Customer
+from .models import Customer, Phonemodel, Service, Ticket
 
 
 # Create your views here.
 
+# Home page
 def home(request):
     return render(request, "book_repair/index.html")
 
 
+# Login page
 def login(request):
     return render(request, "book_repair/login.html")
 
 
-def customer_list(request):
-    customers = Customer.objects.all()
+# Phone model
+def phones_list(request):
+
+    phones = Phonemodel.objects.all()
 
     context = {
-        'customers': customers,
+        'phones': phones,
+
     }
 
-    return render(request, 'book_repair/customer_list.html', context)
+    return render(request, 'book_repair/book_repair.html', context)

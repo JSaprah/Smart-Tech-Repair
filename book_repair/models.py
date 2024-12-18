@@ -35,10 +35,11 @@ class Customer(models.Model):
 
 class Phonemodel(models.Model):
     manufacturer = models.CharField(max_length=50, choices=MANUFACTURER)
-    make = models.CharField(max_length=100)
+    series = models.CharField(max_length=50)
+    make = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return f"{self.manufacturer} {self.make}"
+        return f"{self.manufacturer} {self.series} {self.make}"
 
 
 class Service(models.Model):
@@ -57,7 +58,7 @@ class Device(models.Model):
     issue_description = models.TextField()
 
     def __str__(self):
-        return f"{self.phonemodel} {self.make} - {self.customer}"
+        return f"{self.phonemodel} {self.imei} - {self.customer}"
 
 
 class Ticket(models.Model):

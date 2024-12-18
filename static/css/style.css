@@ -6,8 +6,15 @@ body{
 
 /*--------------------------------------------Heading*/
 
+header{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+
 .logo{
-    background-image: url("../css/images/logo.png");
+    background-image: url(../css/images/logo.png);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -21,7 +28,7 @@ body{
 
 
 .navcontainer{
-    background-color: rgba(0, 0, 0,0.71);
+    background-color: rgba(0, 0, 0);
     text-align: center;
 }
 
@@ -47,10 +54,6 @@ body{
 /*--------------------------------------------Footer*/
 
 
-.container-fluid{
-    padding: 0;
-}
-
 .footer-container{
     background-color: rgba(0, 0, 0,0.81);
     text-align: center;
@@ -71,5 +74,21 @@ body{
 
 .social-link:hover{
     background: rgba(165,52,52,0.5);
+}
+
+
+/*--------------------------------------------Phone Model*/
+.phone-model-card{
+    text-align: center;
+    background-color: rgba(63, 99, 115, 0.229);
+    text-decoration: none;
+    color: black;
+}
+
+
+.phone-model-card:hover{
+    background-color: rgba(165,52,52);
+    text-decoration: none;
+    color: white;
 }
 
