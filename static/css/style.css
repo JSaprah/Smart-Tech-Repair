@@ -7,18 +7,21 @@ body{
 /*--------------------------------------------Heading*/
 
 .logo{
-    text-decoration: none;
-    color: black;
+    background-image: url("../css/images/logo.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-color: rgba(211,217,12);
     height: auto;
-    text-align: center;
+    visibility: visible;
+
 }
 
 /*--------------------------------------------Navigation*/
 
 
 .navcontainer{
-    background-color: rgba(0, 0, 0);
+    background-color: rgba(0, 0, 0,0.71);
     text-align: center;
 }
 

@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 STATUS = ((0, "Pending"), (1, "In progress"), (2, "Completed"))
-# MANUFACTURER = ((0, "Apple"), (1, "Samsung"))
+MANUFACTURER = ((0, "Apple"), (1, "Samsung"))
 # MAKE = ((1, "iPhone 16"), (2, "iPhone 15"))
 # REPAIR_DURATION = 1
 PART = (
@@ -36,7 +36,7 @@ class Customer(models.Model):
 
 class Device(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    manufacturer = models.CharField(max_length=50)
+    manufacturer = models.CharField(max_length=50, choices=MANUFACTURER)
     make = models.CharField(max_length=100)
     imei = models.CharField(max_length=15, unique=True)
     issue_description = models.TextField()
@@ -47,8 +47,8 @@ class Device(models.Model):
 
 
 class Service(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.TextField()
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    part = models.CharField(max_length=50, choices=PART)
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
