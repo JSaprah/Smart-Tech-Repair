@@ -36,8 +36,6 @@ class Customer(models.Model):
 
 class Device(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    manufacturer = models.CharField(max_length=50, choices=MANUFACTURER)
-    make = models.CharField(max_length=100)
     imei = models.CharField(max_length=15, unique=True)
     issue_description = models.TextField()
     # manufacturer = models.IntegerField(choices=MANUFACTURER) #brand
@@ -47,7 +45,8 @@ class Device(models.Model):
 
 
 class Service(models.Model):
-    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    manufacturer = models.CharField(max_length=50, choices=MANUFACTURER)
+    make = models.CharField(max_length=100)
     part = models.CharField(max_length=50, choices=PART)
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
