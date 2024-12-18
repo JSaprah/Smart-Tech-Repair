@@ -28,7 +28,6 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=15)
-    # requester = models.ForeignKey(User, on_delete=models.CASCADE) 
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
@@ -56,10 +55,9 @@ class Device(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     imei = models.CharField(max_length=15, unique=True)
     issue_description = models.TextField()
-    # manufacturer = models.IntegerField(choices=MANUFACTURER) #brand
 
     def __str__(self):
-        return f"{self.manufacturer} {self.make} - {self.customer}"
+        return f"{self.phonemodel} {self.make} - {self.customer}"
 
 
 class Ticket(models.Model):
@@ -68,7 +66,6 @@ class Ticket(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
     duration = models.IntegerField()
-    # ticketnumber = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
         return f"Repair for{self.device} {self.status}"
