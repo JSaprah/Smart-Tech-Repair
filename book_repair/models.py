@@ -6,18 +6,18 @@ MANUFACTURER = (("Apple", "Apple"), ("Samsung", "Samsung"))
 # MAKE = ((1, "iPhone 16"), (2, "iPhone 15"))
 # REPAIR_DURATION = 1
 PART = (
-    (1, "Diagnostic Services"),
-    (2, "Screen Replacement"),
-    (3, "Battery Replacement"),
-    (4, "Charging port Replacement"),
-    (5, "Headphone Jack Repair"),
-    (6, "Microphone Repair"),
-    (7, "Loudspeaker Repair"),
-    (8, "Speaker Repair"),
-    (9, "Rear Camera Repair"),
-    (10, "Front Camera Repair"),
-    (11, "Backglass Repair"),
-    (12, "Rear housing Replacement"),
+    ("Diagnostic Services", "Diagnostic Services"),
+    ("Screen Replacement", "Screen Replacement"),
+    ("Battery Replacement", "Battery Replacement"),
+    ("Charging port Replacement", "Charging port Replacement"),
+    ("Headphone Jack Repair", "Headphone Jack Repair"),
+    ("Microphone Repair", "Microphone Repair"),
+    ("Loudspeaker Repair", "Loudspeaker Repair"),
+    ("Speaker Repair", "Speaker Repair"),
+    ("Rear Camera Repair", "Rear Camera Repair"),
+    ("Front Camera Repair", "Front Camera Repair"),
+    ("Backglass Repair", "Backglass Repair"),
+    ("Rear housing Replacement", "Rear housing Replacement"),
 )
 
 
@@ -34,7 +34,25 @@ class Customer(models.Model):
         return f"{self.first_name} {self.last_name}"
 
 
+class Phonemodel(models.Model):
+    manufacturer = models.CharField(max_length=50, choices=MANUFACTURER)
+    make = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.manufacturer} {self.make}"
+
+
+class Service(models.Model):
+    phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
+    part = models.CharField(max_length=50, choices=PART)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"Reparing of the device{self.phonemodel} with a broken {self.part} costst {self.price}"
+
+
 class Device(models.Model):
+    phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     imei = models.CharField(max_length=15, unique=True)
     issue_description = models.TextField()
@@ -44,23 +62,8 @@ class Device(models.Model):
         return f"{self.manufacturer} {self.make} - {self.customer}"
 
 
-class Phonemodel(models.Model):
-    manufacturer = models.CharField(max_length=50, choices=MANUFACTURER)
-    make = models.CharField(max_length=100)
-
-
-class Service(models.Model):
-    phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
-    part = models.CharField(max_length=50, choices=PART)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-
-    def __str__(self):
-        return self.name
-
-
 class Ticket(models.Model):
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
-    service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True)
     booking_date = models.DateTimeField()
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
