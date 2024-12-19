@@ -18,6 +18,7 @@ PART = (
     ("Front Camera Repair", "Front Camera Repair"),
     ("Backglass Repair", "Backglass Repair"),
     ("Rear housing Replacement", "Rear housing Replacement"),
+    ("1", "1")
 )
 
 
@@ -48,7 +49,17 @@ class Service(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"Reparing of the device{self.phonemodel} with a broken {self.part} costst {self.price}"
+        return f"{self.part}"
+
+
+#class Device(models.Model):
+ #   phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
+ #   customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+ #   imei = models.CharField(max_length=15, unique=True)
+  #  issue_description = models.TextField()
+
+ #   def __str__(self):
+  #      return f"{self.phonemodel} {self.imei} - {self.customer}"
 
 
 class Ticket(models.Model):
@@ -60,6 +71,3 @@ class Ticket(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     imei = models.CharField(max_length=15, unique=True)
     issue_description = models.TextField()
-
-    def __str__(self):
-        return f"Repair for{self.phonemodel} {self.broken_part} for customer {customer} with {imei} has now the status {status}" 

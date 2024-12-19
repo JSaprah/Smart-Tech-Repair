@@ -29,11 +29,3 @@ def phones_list(request):
     return render(request, 'book_repair/book_repair.html', context)
 
 
-def booking_details(request, id):
-
-    booking = get_object_or_404(Customer, id=id)
-    context = {
-        'booking': booking
-        }
-
-    return render(request, 'book_repair/book_repair_details.html', context)
