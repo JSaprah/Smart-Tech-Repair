@@ -30,15 +30,18 @@
                 <div class="col menu">
                     <ul id="navigation" class="list-inline">
                         <li class="col-md-3 list-inline-item nav-item">
-                            <a href="{% url 'home' %}" class= "nav-active {% if request.path == '/' %}active{% endif %}">Home</a>
+                            <a href="{% url 'home' %}"
+                                class="nav-active {% if request.path == '/' %}active{% endif %}">Home</a>
                         </li>
 
                         <li class="col-md-3 list-inline-item nav-item">
-                            <a href="{% url 'booking'%}" class= "nav-active {% if request.path == '/booking/' %}active{% endif %}">Book Repair</a>
+                            <a href="{% url 'booking'%}"
+                                class="nav-active {% if request.path == '/booking/' %}active{% endif %}">Book Repair</a>
                         </li>
 
                         <li class="col-md-3 list-inline-item nav-item">
-                            <a href="{% url 'login'%}" class= "nav-active {% if request.path == '/login/' %}active{% endif %}">Login</a>
+                            <a href="{% url 'login'%}"
+                                class="nav-active {% if request.path == '/login/' %}active{% endif %}">Login</a>
                         </li>
                     </ul>
                 </div>
@@ -48,7 +51,15 @@
 
     </header>
 
+
     <section>
+
+        <div class="container-fluid p-0" mt-0>
+
+            <div class="top-image">
+
+            </div>
+        </div>
 
         {% block content %}{% endblock %}
 
@@ -88,8 +99,9 @@
 
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="{% static 'script.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="/static/js/script.js"></script>
 </body>
 
 </html>

@@ -14,13 +14,22 @@ header{
 
 
 .logo{
-    background-image: url(../css/images/logo.png);
+    background-image: url(../images/logo.png);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
     background-color: rgba(211,217,12);
     height: auto;
     visibility: visible;
+
+}
+
+.top-image{
+    background-image: url(../images/broken-screen.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 250px;
 
 }
 
