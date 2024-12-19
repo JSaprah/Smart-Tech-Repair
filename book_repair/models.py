@@ -51,22 +51,15 @@ class Service(models.Model):
         return f"Reparing of the device{self.phonemodel} with a broken {self.part} costst {self.price}"
 
 
-class Device(models.Model):
+class Ticket(models.Model):
     phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
+    broken_part = models.ForeignKey(Service, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    booking_date = models.DateTimeField()
+    status = models.IntegerField(choices=STATUS, default=0)
+    created_on = models.DateTimeField(auto_now_add=True)
     imei = models.CharField(max_length=15, unique=True)
     issue_description = models.TextField()
 
     def __str__(self):
-        return f"{self.phonemodel} {self.imei} - {self.customer}"
-
-
-class Ticket(models.Model):
-    device = models.ForeignKey(Device, on_delete=models.CASCADE)
-    booking_date = models.DateTimeField()
-    status = models.IntegerField(choices=STATUS, default=0)
-    created_on = models.DateTimeField(auto_now_add=True)
-    duration = models.IntegerField()
-
-    def __str__(self):
-        return f"Repair for{self.device} {self.status}"
+        return f"Repair for{self.phonemodel} {self.broken_part} for customer {customer} with {imei} has now the status {status}" 
