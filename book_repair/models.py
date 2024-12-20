@@ -52,16 +52,6 @@ class Service(models.Model):
         return f"{self.part}"
 
 
-#class Device(models.Model):
- #   phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
- #   customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
- #   imei = models.CharField(max_length=15, unique=True)
-  #  issue_description = models.TextField()
-
- #   def __str__(self):
-  #      return f"{self.phonemodel} {self.imei} - {self.customer}"
-
-
 class Ticket(models.Model):
     phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
     broken_part = models.ForeignKey(Service, on_delete=models.CASCADE)
@@ -71,3 +61,6 @@ class Ticket(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     imei = models.CharField(max_length=15, unique=True)
     issue_description = models.TextField()
+
+    def __str__(self):
+        return f"{self.phonemodel} {self.broken_part} for {self.customer}"
