@@ -1,4 +1,6 @@
 {% load static %}
+{% load crispy_forms_tags %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +30,7 @@
 
             <div class="col-md-10 navcontainer">
                 <div class="col menu">
+                    
                     <ul id="navigation" class="list-inline">
                         <li class="col-md-3 list-inline-item nav-item">
                             <a href="{% url 'home' %}"

@@ -2,6 +2,13 @@
 
 {% block content %}
 
+<p>Fill in the form to create a ticket</p>
 
+<form method="post">
+    {% csrf token % }
+    {{ ticket_form|crispy }}
+
+    <button type="submit">Submit</button>
+</form>
 
 {% endblock content %}

@@ -5,14 +5,17 @@
 <h5>Select model</h5>
 
 <!--Phone model-->
-<label for="searchPhone">Search</label>
-<input type="text" id="searchPhone" oninput="filterList()" placeholder="Type to filter">
+
+<form class="form-inline">
+   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+   <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+ </form>
 
 <div class="row">
    {% for phone in phones %}
 
    <!--Show all phone models-->
-   <a href="{% url 'create_ticket' phone.id %}" class="col-md-2 p-3 m-3 phone-model-card">
+   <a href="{% url 'create_ticket' phone.id %}" class="col-md-2 p-3 m-3 phone-model-card border rounded">
       {{ phone.series }} {{ phone.make }}
    </a>
 

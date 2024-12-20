@@ -33,9 +33,13 @@ def phones_list(request):
 # Create a ticket
 def create_ticket(request, id):
     phone_model = get_object_or_404(Phonemodel, id=id)
+    ticket_form = TicketForm()
 
     return render(
         request,
         "book_repair/create_ticket.html",
-        {"phone_model": phone_model},
+        {
+            "phone_model": phone_model,
+            "ticket_form": ticket_form
+        },
     )
