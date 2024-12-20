@@ -31,8 +31,8 @@ def phones_list(request):
 
 
 # Create a ticket
-def create_ticket(request, phone_model):
-    phone_model = get_object_or_404(Phonemodel, id=phone_model)
+def create_ticket(request, id):
+    phone_model = get_object_or_404(Phonemodel, id=id)
 
     return render(
         request,

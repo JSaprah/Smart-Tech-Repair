@@ -12,14 +12,11 @@
    {% for phone in phones %}
 
    <!--Show all phone models-->
-   <a href="" class="col-md-2 p-3 m-3 phone-model-card">
+   <a href="{% url 'create_ticket' phone.id %}" class="col-md-2 p-3 m-3 phone-model-card">
       {{ phone.series }} {{ phone.make }}
    </a>
 
-   <!--Click on the phone model to go to a detailed page-->
-   <a href="{% url 'create_ticket' booking.phonemodel %}" class="post-link">
-
-      {% endfor%}
+   {% endfor%}
 
 </div>
 
