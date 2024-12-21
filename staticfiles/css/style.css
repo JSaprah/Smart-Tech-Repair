@@ -1,0 +1,103 @@
+/*--------------------------------------------Colors*/
+
+body{
+    background-color: rgba(211,211,211,0.5);
+}
+
+/*--------------------------------------------Heading*/
+
+header{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+
+.logo{
+    background-image: url(../images/logo.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: rgba(211,217,12);
+    height: auto;
+    visibility: visible;
+
+}
+
+.top-image{
+    background-image: url(../images/broken-screen.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 250px;
+
+}
+
+/*--------------------------------------------Navigation*/
+
+
+.navcontainer{
+    background-color: rgba(0, 0, 0);
+    text-align: center;
+}
+
+.nav-item{
+    text-align: center;
+    padding: 0;
+}
+
+.nav-item a{
+    text-decoration: none;
+    color: white;
+}
+
+.nav-item a:hover{
+    color:rgb(211,217,12);
+}
+
+.nav-active.active{
+    color:rgb(211,217,12);
+}
+
+
+/*--------------------------------------------Footer*/
+
+
+.footer-container{
+    background-color: rgba(0, 0, 0,0.81);
+    text-align: center;
+}
+
+.social-link{
+    width: 32px;
+    height: 32px;
+    padding: 12px 0;
+    margin: 6px;
+    border-radius: 50%;
+    font-size: 13px;
+    line-height: 7px;
+    text-align: center;
+    color: #fafafa;
+    background: rgba(165,52,52);
+}
+
+.social-link:hover{
+    background: rgba(165,52,52,0.5);
+}
+
+
+/*--------------------------------------------Phone Model*/
+.phone-model-card{
+    text-align: center;
+    background-color: rgba(63, 99, 115, 0.229);
+    text-decoration: none;
+    color: black;
+}
+
+
+.phone-model-card:hover{
+    background-color: rgba(165,52,52);
+    text-decoration: none;
+    color: white;
+}
+
