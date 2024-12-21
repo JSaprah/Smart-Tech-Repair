@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 # from django.http import HttpResponse
 # from django.views import generic
 from .models import Customer, Phonemodel, Service, Ticket
-from .forms import TicketForm
+from .forms import CustomerForm, PartForm, TicketForm
 
 
 # Create your views here.
@@ -33,13 +33,17 @@ def phones_list(request):
 # Create a ticket
 def create_ticket(request, id):
     phone_model = get_object_or_404(Phonemodel, id=id)
+    customer_form = CustomerForm()
     ticket_form = TicketForm()
+    part_form = PartForm()
 
     return render(
         request,
         "book_repair/create_ticket.html",
         {
             "phone_model": phone_model,
-            "ticket_form": ticket_form
+            "part_form": part_form,
+            "ticket_form": ticket_form,
+            "customer_form": customer_form,
         },
     )

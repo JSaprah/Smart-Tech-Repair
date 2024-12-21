@@ -38,6 +38,7 @@ class Phonemodel(models.Model):
     manufacturer = models.CharField(max_length=50, choices=MANUFACTURER)
     series = models.CharField(max_length=50)
     make = models.CharField(max_length=100, blank=True)
+    slug = models.SlugField(max_length=200, unique=True)
 
     def __str__(self):
         return f"{self.manufacturer} {self.series} {self.make}"

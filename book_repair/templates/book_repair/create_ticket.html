@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
 <p>Fill in the form to create a ticket</p>
 
-<form method="post">
-    {% csrf token % }
-    {{ ticket_form|crispy }}
+<form method="post" class="m-3">
+    {% csrf_token %}
+    {{ part_form | crispy }}
+    {{ customer_form | crispy }}
+    {{ ticket_form | crispy }}
+
 
     <button type="submit">Submit</button>
 </form>
