@@ -2,16 +2,18 @@
 
 {% block content %}
 
-<h5>Select model</h5>
+<h5 class="ml-2">Select model</h5>
 
 <!--Phone model-->
 
-<form class="form-inline">
-   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+<form class="form-inline ml-3">
+   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query"
+      value="{{ search_phones }}">
    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
- </form>
+</form>
 
-<div class="row">
+
+<div id="phonemodels" class="row justify-content-center">
    {% for phone in phones %}
 
    <!--Show all phone models-->

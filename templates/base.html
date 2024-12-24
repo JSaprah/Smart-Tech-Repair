@@ -1,4 +1,7 @@
 {% load static %}
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
 
 
 <!DOCTYPE html>
@@ -29,21 +32,32 @@
 
             <div class="col-md-10 navcontainer">
                 <div class="col menu">
-                    
-                    <ul id="navigation" class="list-inline">
-                        <li class="col-md-3 list-inline-item nav-item">
+
+                    <ul id="navigation" class="list-inline mt-2 d-md-flex justify-content-end">
+
+                        <li class=" col-md-2 list-inline-item nav-item">
                             <a href="{% url 'home' %}"
                                 class="nav-active {% if request.path == '/' %}active{% endif %}">Home</a>
                         </li>
 
-                        <li class="col-md-3 list-inline-item nav-item">
-                            <a href="{% url 'booking'%}"
-                                class="nav-active {% if request.path == '/booking/' %}active{% endif %}">Book Repair</a>
+                        <li class="col-md-2 list-inline-item nav-item">
+                            <a href="{% url 'booking' %}"
+                                class="nav-active {% if request.path == '/booking/' %}active{% endif %}">Book
+                                Repair</a>
                         </li>
 
-                        <li class="col-md-3 list-inline-item nav-item">
-                            <a href="{% url 'login'%}"
-                                class="nav-active {% if request.path == '/login/' %}active{% endif %}">Login</a>
+                        <li class="col-md-2 list-inline-item nav-item">
+                            <a href="{% url 'login' %}"
+                                class="nav-active {% if request.path == '/login/' %}active{% endif %}">Account</a>
+                        </li>
+                        <li class="col-md-2 list-inline-item">
+                            {% if user.is_authenticated %}
+                            <p class="m-0 user-banner">
+                                Logged in as {{ user }}
+                            </p>
+                            {% else %}
+                            <p class="m-0 user-banner">Logged out</p>
+                            {% endif %}
                         </li>
                     </ul>
                 </div>

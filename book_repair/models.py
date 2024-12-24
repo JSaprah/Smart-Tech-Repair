@@ -18,7 +18,6 @@ PART = (
     ("Front Camera Repair", "Front Camera Repair"),
     ("Backglass Repair", "Backglass Repair"),
     ("Rear housing Replacement", "Rear housing Replacement"),
-    ("1", "1")
 )
 
 
@@ -39,7 +38,6 @@ class Phonemodel(models.Model):
     series = models.CharField(max_length=50)
     make = models.CharField(max_length=100, blank=True)
 
-
     def __str__(self):
         return f"{self.manufacturer} {self.series} {self.make}"
 
@@ -47,7 +45,7 @@ class Phonemodel(models.Model):
 class Service(models.Model):
     phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
     part = models.CharField(max_length=50, choices=PART)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
         return f"{self.part}"
@@ -57,7 +55,7 @@ class Ticket(models.Model):
     phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
     broken_part = models.ForeignKey(Service, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    booking_date = models.DateTimeField()
+    booking_date = models.DateField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
     imei = models.CharField(max_length=15, unique=True)

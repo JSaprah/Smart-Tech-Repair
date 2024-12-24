@@ -59,6 +59,11 @@ header{
     color:rgb(211,217,12);
 }
 
+.user-banner{
+    background-color: rgba(251, 244, 244);
+    color:rgba(165,52,52);
+    padding: 2px;
+}
 
 /*--------------------------------------------Footer*/
 

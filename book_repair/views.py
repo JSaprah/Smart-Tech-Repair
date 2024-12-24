@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 # from django.http import HttpResponse
 # from django.views import generic
 from .models import Customer, Phonemodel, Service, Ticket
+from django.contrib import messages
 from .forms import CustomerForm, PartForm, TicketForm
 
 
@@ -20,22 +21,48 @@ def login(request):
 # Phone model
 def phones_list(request):
 
-    phones = Phonemodel.objects.all()
+    search_phone = request.GET.get('query', '')
+    if search_phone:
+        phones = Phonemodel.objects.filter(
+            manufacturer__icontains=search_phone,
+            )
 
-    context = {
-        'phones': phones,
+    else:
+        phones = phones = Phonemodel.objects.all()
 
-    }
-
-    return render(request, 'book_repair/book_repair.html', context)
+    return render(
+        request,
+        'book_repair/book_repair.html', {
+            'phones': phones, 'search_phone': search_phone}
+        )
 
 
 # Create a ticket
 def create_ticket(request, id):
     phone_model = get_object_or_404(Phonemodel, id=id)
+    part_form = PartForm()
     customer_form = CustomerForm()
     ticket_form = TicketForm()
-    part_form = PartForm()
+
+    if request.method == "POST":
+        customer_form = CustomerForm(data=request.POST)
+        ticket_form = TicketForm(data=request.POST)
+        part_form = PartForm(data=request.POST)
+
+        if customer_form.is_valid() and ticket_form.is_valid() and part_form.is_valid():
+            customer_form.save()
+            part_form.save(commit=False)
+            
+            ticket = ticket_form.save(commit=False)
+            ticket.customer = customer
+            ticket.broken_part = part
+            ticket.save()
+
+
+    else:
+        customer_form = CustomerForm()
+        ticket_form = TicketForm()
+
 
     return render(
         request,
@@ -45,5 +72,5 @@ def create_ticket(request, id):
             "part_form": part_form,
             "ticket_form": ticket_form,
             "customer_form": customer_form,
-        },
+        }
     )

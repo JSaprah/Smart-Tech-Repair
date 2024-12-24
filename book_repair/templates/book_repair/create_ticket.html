@@ -3,16 +3,19 @@
 
 {% block content %}
 
-<p>Fill in the form to create a ticket</p>
+<h5 class="m-3">Fill in the form to create a ticket for: {{ phone_model.manufacturer }} {{ phone_model.series }}
+    {{ phone_model.make }}</h5>
 
 <form method="post" class="m-3">
-    {% csrf_token %}
+    {% if user.is_authenticated %}
     {{ part_form | crispy }}
     {{ customer_form | crispy }}
     {{ ticket_form | crispy }}
-
-
-    <button type="submit">Submit</button>
+    {% csrf_token %}
+    <button class="btn btn-secondary" type="submit">Submit</button>
 </form>
+{% else %}
+<p>Log in to request a repair</p>
+{% endif %}
 
 {% endblock content %}
