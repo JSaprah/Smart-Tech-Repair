@@ -36,16 +36,15 @@ class Customer(models.Model):
 class Phonemodel(models.Model):
     manufacturer = models.CharField(max_length=50, choices=MANUFACTURER)
     series = models.CharField(max_length=50)
-    make = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return f"{self.manufacturer} {self.series} {self.make}"
+        return f"{self.manufacturer} {self.series}"
 
 
 class Service(models.Model):
     phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
     part = models.CharField(max_length=50, choices=PART)
-    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=50)
 
     def __str__(self):
         return f"{self.part}"
@@ -60,6 +59,7 @@ class Ticket(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     imei = models.CharField(max_length=15, unique=True)
     issue_description = models.TextField()
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.phonemodel} {self.broken_part} for {self.customer}"

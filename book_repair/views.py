@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Customer, Phonemodel, Service, Ticket
 from django.contrib import messages
 from .forms import CustomerForm, PartForm, TicketForm
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -13,14 +14,16 @@ def home(request):
     return render(request, "book_repair/index.html")
 
 
+# Ticket details page
+@login_required
+def ticket_details(request):
+    tickets = Ticket.objects.filter(created_by=request.user)
+    return render(request, "book_repair/ticket_details.html", {'tickets': tickets})
+
+
 # Login page
 def login(request):
     return render(request, "book_repair/login.html")
-
-
-# Ticket details page
-def ticket_details(request):
-    return render(request, "book_repair/ticket_details")
 
 
 # Phone model
@@ -29,7 +32,7 @@ def phones_list(request):
     search_phone = request.GET.get('query', '')
     if search_phone:
         phones = Phonemodel.objects.filter(
-            manufacturer__icontains=search_phone,
+            series__icontains=search_phone,
             )
     else:
         phones = phones = Phonemodel.objects.all()

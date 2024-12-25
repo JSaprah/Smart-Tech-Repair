@@ -5,18 +5,15 @@
 {% block content %}
 
 <h5 class="text-center mt-4 subtitle">View your ticket details</h5>
-    {% if user.is_authenticated %}
 
-    {% else %}
-    <p>Log in to request a repair</p>
-    <li class="list-group-item list-group-item-light">
-        <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-            href="{% url 'account_signup' %}">Register</a>
-    </li>
-    <li class="list-group-item list-group-item-light">
-        <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
-            href="{% url 'account_login' %}">Login</a>
-    </li>
-    {% endif %}
 
-    {% endblock content %}
+<ul>
+    {% for ticket in tickets %}
+    <li>
+        {{ ticket.phonemodel }}
+        {{ ticket.imei }}
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
