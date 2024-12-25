@@ -18,6 +18,11 @@ def login(request):
     return render(request, "book_repair/login.html")
 
 
+# Ticket details page
+def ticket_details(request):
+    return render(request, "book_repair/ticket_details")
+
+
 # Phone model
 def phones_list(request):
 

@@ -47,9 +47,15 @@
                         </li>
 
                         <li class="col-md-2 list-inline-item nav-item">
+                            <a href="{% url 'ticket_details' %}"
+                                class="nav-active {% if request.path == '/ticket_details/' %}active{% endif %}">Ticket details</a>
+                        </li>
+
+                        <li class="col-md-2 list-inline-item nav-item">
                             <a href="{% url 'login' %}"
                                 class="nav-active {% if request.path == '/login/' %}active{% endif %}">Account</a>
                         </li>
+
                         <li class="col-md-2 list-inline-item">
                             {% if user.is_authenticated %}
                             <p class="m-0 user-banner">
