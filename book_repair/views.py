@@ -1,10 +1,9 @@
-from django.shortcuts import render, get_object_or_404
-# from django.http import HttpResponse
-# from django.views import generic
+from django.shortcuts import render, get_object_or_404, reverse
 from .models import Customer, Phonemodel, Service, Ticket
 from django.contrib import messages
 from .forms import CustomerForm, PartForm, TicketForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -14,19 +13,12 @@ def home(request):
     return render(request, "book_repair/index.html")
 
 
-# Ticket details page
-@login_required
-def ticket_details(request):
-    tickets = Ticket.objects.filter(created_by=request.user)
-    return render(request, "book_repair/ticket_details.html", {'tickets': tickets})
-
-
 # Login page
 def login(request):
     return render(request, "book_repair/login.html")
 
 
-# Phone model
+# Returns all Phone models
 def phones_list(request):
 
     search_phone = request.GET.get('query', '')
@@ -45,6 +37,7 @@ def phones_list(request):
 
 
 # Create a ticket
+@login_required
 def create_ticket(request, id):
     phone_model = get_object_or_404(Phonemodel, id=id)
     part_form = PartForm()
@@ -81,3 +74,10 @@ def create_ticket(request, id):
             "customer_form": customer_form,
         }
     )
+
+
+# Ticket details page
+@login_required
+def ticket_details(request):
+    tickets = Ticket.objects.filter(created_by=request.user)
+    return render(request, "book_repair/ticket_details.html", {'tickets': tickets})
