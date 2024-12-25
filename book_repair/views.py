@@ -26,7 +26,6 @@ def phones_list(request):
         phones = Phonemodel.objects.filter(
             manufacturer__icontains=search_phone,
             )
-
     else:
         phones = phones = Phonemodel.objects.all()
 

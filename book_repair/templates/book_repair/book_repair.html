@@ -2,29 +2,60 @@
 
 {% block content %}
 
-<h5 class="ml-2">Select model</h5>
+<h5 class="text-center mt-4 subtitle">Select the phone model to book your repair</h5>
 
-<!--Phone model-->
+<section class="container-fluid">
+   <!--Phone model-->
+   <div class="row justify-content-center">
+      <div class="col-md-3">
+         <button id="apple-btn" data-manufacturer="Apple" class="btn btn-outline-dark col-sm p-5 m-2"
+            type="submit">Apple</button>
+      </div>
+      <div class="col-md-3">
+         <button id="samsung-btn" data-manufacturer="Samsung" class="btn btn-outline-dark col-sm p-5 m-2"
+            type="submit">Samsung</button>
+      </div>
+      <div class="col-md-3">
+         <button id="all-btn" class="btn btn-outline-dark col-sm p-5 m-2" type="submit">Show all</button>
+      </div>
+   </div>
+</section>
 
-<form class="form-inline ml-3">
-   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query"
-      value="{{ search_phones }}">
-   <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
-</form>
+
+<section class="container-fluid">
+   <!--Phone model-->
+   <div class="row justify-content-center">
+      <div class="col">
+         <form class="form-inline justify-content-center">
+            <div class="form-group mx-sm-3 mb-2">
+               <label for="searchphone" class="sr-only">Search phone</label>
+               <input type="search" class="form-control" id="searchphone" placeholder="Search phone" aria-label="Search" name="query"
+               value="">
+            </div>
+            <button type="submit" class="btn btn-danger btn-search-phone mb-2">Search</button>
+         </form>
+      </div>
+   </div>
+</section>
+
+<section class="container-fluid">
+   <div class="phone row justify-content-center">
+
+      {% for phone in phones %}
+
+      <!--Show all phone models-->
+      <a href="{% url 'create_ticket' phone.id %}"
+         class="data-manufacturer col-md-2 p-3 m-3 phone-model-card border rounded"
+         data-manufacturer="{{ phone.manufacturer }}">
+         {{ phone.series }} {{ phone.make }}
+      </a>
+
+      {% endfor%}
+
+   </div>
 
 
-<div id="phonemodels" class="row justify-content-center">
-   {% for phone in phones %}
-
-   <!--Show all phone models-->
-   <a href="{% url 'create_ticket' phone.id %}" class="col-md-2 p-3 m-3 phone-model-card border rounded">
-      {{ phone.series }} {{ phone.make }}
-   </a>
-
-   {% endfor%}
-
-</div>
-
+</section>
 
 
 {% endblock content %}
