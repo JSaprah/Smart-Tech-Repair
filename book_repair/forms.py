@@ -1,11 +1,6 @@
 from django import forms
-from .models import Customer, Service, Ticket
+from .models import Customer, Ticket
 
-
-class PartForm(forms.ModelForm):
-    class Meta:
-        model = Service
-        fields = ['part']
 
 class CustomerForm(forms.ModelForm):
     class Meta:
@@ -21,4 +16,14 @@ class CustomerForm(forms.ModelForm):
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ["issue_description", "imei"]
+        fields = [
+            "customer",
+            "phonemodel",
+            "broken_part",
+            "issue_description",
+            "imei"
+            ]
+
+    customer = forms.ModelChoiceField(
+        queryset=Customer.objects.all(), empty_label="Select a customer"
+        )

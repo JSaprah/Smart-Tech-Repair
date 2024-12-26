@@ -47,25 +47,32 @@ class Phonemodel(models.Model):
         return f"{self.manufacturer} {self.series}"
 
 
-class Service(models.Model):
-    phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
+class Part(models.Model):
     part = models.CharField(max_length=50, choices=PART)
-    price = models.DecimalField(max_digits=10, decimal_places=2, default=50)
 
     def __str__(self):
         return f"{self.part}"
 
 
+class Service(models.Model):
+    phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
+    broken_part = models.ForeignKey(Part, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=50)
+
+    def __str__(self):
+        return f"{self.broken_part}"
+
+
 class Ticket(models.Model):
     phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
-    broken_part = models.ForeignKey(Service, on_delete=models.CASCADE)
+    broken_part = models.ForeignKey(Part, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     booking_date = models.DateField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
     imei = models.CharField(max_length=15)
     issue_description = models.TextField()
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     ticket_number = models.CharField(max_length=50, unique=True, blank=True)
 
 # Auto generate ticket number

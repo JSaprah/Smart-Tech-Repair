@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Customer, Ticket, Service, Phonemodel
+from .models import Customer, Ticket, Service, Phonemodel, Part
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -36,3 +36,4 @@ class PostAdmin(SummernoteModelAdmin):
 admin.site.register(Customer)
 admin.site.register(Service)
 admin.site.register(Phonemodel)
+admin.site.register(Part)

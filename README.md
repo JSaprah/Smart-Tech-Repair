@@ -19,11 +19,13 @@ During this project the focus will be on the device type: phones. As these categ
 |Phase|Start date|End date|Description|
 |-----|----------|--------|-----------|
 |0|10/12|14/12|Project preparation|
-|1|15/12|19/12|Create front end|
-|2|19/12|24/12|Create back end|
-|3|24/12|29/01|Testing|
-|4|29/12|03/01|Finalise|
+|1|15/12|19/12|Create front end with Bootstrap|
+|2|19/12|24/12|Create Read functionality|
+|3|24/12|29/01|Update Delete functionality|
+|4|29/12|03/01|Testing and finalise|
 
+
+## User stories
 
 
 ### sprint 0
@@ -31,38 +33,28 @@ In this sprint I prepared myself for the project by setting up the environment, 
 
 Make the scope of the project smaller by:
 1. Building the application for the device type phones only. Initially, I wanted to go with the categories laptops, tablets and phones. Looking at the time constraints I decided to focus on the functionality rather than different types of devices. 
-2. For the brands, I chose to go with the two biggest ones Apple and Samsung. As these are the ones with the highest number of requests.
+2. For the brands, I chose to go with the two biggest ones Apple and Samsung (In Samsung specifically for the s-series). As these are the ones with the highest number of requests.
 3. Dropping the invoice functionality. Adding this to the future enhancements. For now I want to focus only on the booking system with the CRUD functionality. 
 
 Other considerations
 
 Different services take different amount of times. However, for this project, I will consider each service to have a duration of one hour.
 
-## User stories
 
-Customer
-As a customer I want so that
+### sprint 1
 
-Technician
+Initialy, I was planning to use a Bootstrap template and edit the template to make my own. However, to learn more about Bootstrap and make this a fully custom project, I decided to start from blank and bring my ideas to the front. When I started with this I saw myself using css. Later in the process I discovered that Bootstrap has more to offer and I can actually make use of that. I learnt the margins and paddings in Bootstrap. Also, copied the grid at places(in the homepage and the book repair page) from the Bootstrap library. This was very easy to use as it gave me the flexibility through all screen sizes.
 
-## Features
+### sprint 2
+This was the the more complicated part of the project as working in Django requires placing a piece of code in multiple places. In this part I discovered that my model was not always correctly setup or that I was missing a small detail in one of the files. Django does provide good feedback in the browser which helped me solving issues. 
 
-As a customer 
+The biggest issue I faced here was with creating the form and submitting information
 
-1. Select device
-2. Select the issue
-3. Send repair request
+### sprint 3
+
+Issues faced
+
+1. Changed the model removed devices caused issues in the database. I removed the migration file and added it again
+2. I was having issues with the routing
 
 
-As a technician
-
-1. Create an overview of all bookings 
-  - Information visible in the overview: customer name, contact, booking date, IMEI number, device
-  - Sort by new to old
-  - Search booking based on customer name, contact, booking date, IMEI number, device
-2. Update status
-  - See more details button
-  - Create option to change the status: "Not received yet", "In progress", "Completed", "More information required".
-3. Send invoice on button click
-  - Create invoice template
-  - Build email functionality
