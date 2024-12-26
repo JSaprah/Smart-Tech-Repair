@@ -67,6 +67,25 @@ class Ticket(models.Model):
     imei = models.CharField(max_length=15, unique=True)
     issue_description = models.TextField()
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    ticket_number = models.CharField(max_length=50, unique=True, blank=True)
+
+    def generate_ticket_number(self):
+        last_ticket = Ticket.objects.order_by('-created_on').first()
+
+        if last_ticket:
+            last_number = int(last_ticket.ticket_number.split('-')[1])
+            new_number = last_number + 1
+        else:
+            new_number = 1
+        ticket_prefix = "STR-"
+
+        return f"{ticket_prefix}{new_number}"
+
+    def save(self, *args, **kwargs):
+        if not self.ticket_number:
+            self.ticket_number = self.generate_ticket_number()
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.phonemodel} {self.broken_part} for {self.customer}"
+        return f"{self.ticket_number}{self.phonemodel} {self.broken_part} for {self.customer}"
