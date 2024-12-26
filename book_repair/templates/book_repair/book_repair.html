@@ -44,10 +44,10 @@
       {% for phone in phones %}
 
       <!--Show all phone models-->
-      <a href="{% url 'create_ticket' phone.id %}"
+      <a href="{% url 'create_ticket' phone.slug %}"
          class="data-manufacturer col-md-2 p-3 m-3 phone-model-card border rounded"
          data-manufacturer="{{ phone.manufacturer }}">
-         {{ phone.series }} {{ phone.make }}
+         {{ phone.series }}
       </a>
 
       {% endfor%}

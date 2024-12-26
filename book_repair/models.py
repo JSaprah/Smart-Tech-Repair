@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 STATUS = ((0, "Pending"), (1, "In progress"), (2, "Completed"))
 MANUFACTURER = (("Apple", "Apple"), ("Samsung", "Samsung"))
@@ -35,7 +36,13 @@ class Customer(models.Model):
 
 class Phonemodel(models.Model):
     manufacturer = models.CharField(max_length=50, choices=MANUFACTURER)
-    series = models.CharField(max_length=50)
+    series = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True)
+
+    def save(self, *args, **kwargs):
+        combined_slug = f"{self.manufacturer} {self.series}"
+        self.slug = slugify(combined_slug)
+        super(Phonemodel, self).save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.manufacturer} {self.series}"

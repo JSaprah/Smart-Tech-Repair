@@ -38,8 +38,8 @@ def phones_list(request):
 
 # Create a ticket
 @login_required
-def create_ticket(request, id):
-    phone_model = get_object_or_404(Phonemodel, id=id)
+def create_ticket(request, slug):
+    phone_model = get_object_or_404(Phonemodel, slug=slug)
     part_form = PartForm()
     customer_form = CustomerForm()
     ticket_form = TicketForm()
