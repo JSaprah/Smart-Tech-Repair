@@ -20,7 +20,9 @@ function filterPhones(manufacturer) {
         const phoneManufacturer = phone.getAttribute('data-manufacturer');
         
         if (manufacturer === 'all' || phoneManufacturer === manufacturer) {
-            phone.style.display = 'block';
+
+            phone.style.display = 'flex';
+
         } else {
             phone.style.display = 'none';
         }

@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404, reverse
-from .models import Customer, Phonemodel, Service, Ticket
-from django.contrib import messages
+from django.shortcuts import render, get_object_or_404
+from .models import Phonemodel, Ticket
 from .forms import CustomerForm, PartForm, TicketForm
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+# from django.contrib import messages
+# from django.http import HttpResponseRedirect
 
 
 # Create your views here.
