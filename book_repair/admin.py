@@ -7,6 +7,7 @@ from django_summernote.admin import SummernoteModelAdmin
 class PostAdmin(SummernoteModelAdmin):
 
     list_display = (
+        'ticket_number',
         'imei',
         'customer',
         'phonemodel',
@@ -16,6 +17,7 @@ class PostAdmin(SummernoteModelAdmin):
         'status',
         'created_on'
         )
+    readonly_fields = ['ticket_number']
     search_fields = [
         'phonemodel__make__icontains',
         'phonemodel__series',

@@ -23,7 +23,6 @@ PART = (
 
 
 # Create your models here.
-
 class Customer(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -64,11 +63,12 @@ class Ticket(models.Model):
     booking_date = models.DateField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
-    imei = models.CharField(max_length=15, unique=True)
+    imei = models.CharField(max_length=15)
     issue_description = models.TextField()
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     ticket_number = models.CharField(max_length=50, unique=True, blank=True)
 
+# Auto generate ticket number
     def generate_ticket_number(self):
         last_ticket = Ticket.objects.order_by('-created_on').first()
 

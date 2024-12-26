@@ -52,12 +52,11 @@ def create_ticket(request, slug):
         if customer_form.is_valid() and ticket_form.is_valid() and part_form.is_valid():
             customer_form.save()
             part_form.save(commit=False)
-            
+
             ticket = ticket_form.save(commit=False)
             ticket.customer = customer
             ticket.broken_part = part
             ticket.save()
-
 
     else:
         customer_form = CustomerForm()
@@ -80,4 +79,12 @@ def create_ticket(request, slug):
 @login_required
 def ticket_details(request):
     tickets = Ticket.objects.filter(created_by=request.user)
+
     return render(request, "book_repair/ticket_details.html", {'tickets': tickets})
+
+
+# Edit ticket
+def edit_ticket(request, id):
+    ticket = get_object_or_404(Ticket, id=id)
+
+    return render(request, 'book_repair/edit_ticket.html', {'ticket': ticket})
