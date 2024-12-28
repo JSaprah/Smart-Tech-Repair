@@ -10,7 +10,7 @@
     <thead>
         <tr>
             <th scope="col">Ticket Number</th>
-            <th scope="col">Customer</th>
+            <th scope="col">Requester</th>
             <th scope="col">Service</th>
             <th scope="col">Status</th>
             <th scope="col">imei</th>
@@ -21,7 +21,7 @@
         {% for ticket in tickets %}
         <tr>
             <td>{{ ticket.ticket_number }}</td>
-            <td>{{ ticket.customer }}</td>
+            <td>{{ ticket.requester }}</td>
             <td>{{ ticket.broken_part }}</td>
             <td>{{ ticket.status }}</td>
             <td>{{ ticket.imei }}</td>

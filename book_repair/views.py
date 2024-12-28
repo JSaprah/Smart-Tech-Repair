@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Phonemodel, Ticket
-from .forms import CustomerForm, TicketForm
+from .forms import TicketForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # from django.http import HttpResponseRedirect
@@ -39,7 +39,8 @@ def phones_list(request):
 # Ticket details page
 @login_required
 def ticket_details(request):
-    tickets = Ticket.objects.filter(created_by=request.user)
+    # tickets = Ticket.objects.filter(created_by=request.user)
+    tickets = Ticket.objects.all()
 
     return render(
         request, "book_repair/ticket_details.html", {'tickets': tickets}
@@ -73,34 +74,6 @@ def create_ticket(request, slug):
 
         }
     )
-
-
-# Create customer
-def create_customer(request):
-
-    customer_form = CustomerForm()
-
-    if request.method == "POST":
-        customer_form = CustomerForm(data=request.POST)
-
-        if customer_form.is_valid():
-            customer_form.save()
-            messages.add_message(
-                request, messages.SUCCESS, "Ticket created!"
-                )
-
-    else:
-        customer_form = CustomerForm()
-
-    return render(
-        request,
-        "book_repair/create_customer.html",
-        {
-            "customer_form": customer_form,
-
-        }
-    )
-
 
 # Edit ticket
 def edit_ticket(request, id):

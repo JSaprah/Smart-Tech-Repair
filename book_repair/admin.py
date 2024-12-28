@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Customer, Ticket, Service, Phonemodel, Part
+from .models import Ticket, Service, Phonemodel, Part
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -9,7 +9,6 @@ class PostAdmin(SummernoteModelAdmin):
     list_display = (
         'ticket_number',
         'imei',
-        'customer',
         'phonemodel',
         'broken_part',
         'booking_date',
@@ -20,9 +19,7 @@ class PostAdmin(SummernoteModelAdmin):
     readonly_fields = ['ticket_number']
     search_fields = [
         'phonemodel__make__icontains',
-        'phonemodel__series',
-        'customer__first_name__icontains',
-        'customer__last_name__icontains']
+        'phonemodel__series',]
     list_filter = (
         'status',
         'phonemodel__manufacturer',
@@ -33,7 +30,6 @@ class PostAdmin(SummernoteModelAdmin):
 
 
 # Register your models here.
-admin.site.register(Customer)
 admin.site.register(Service)
 admin.site.register(Phonemodel)
 admin.site.register(Part)

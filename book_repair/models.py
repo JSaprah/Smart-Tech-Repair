@@ -22,17 +22,6 @@ PART = (
 )
 
 
-# Create your models here.
-class Customer(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    phone_number = models.CharField(max_length=15)
-
-    def __str__(self):
-        return f"{self.first_name} {self.last_name}"
-
-
 class Phonemodel(models.Model):
     manufacturer = models.CharField(max_length=50, choices=MANUFACTURER)
     series = models.CharField(max_length=200)
@@ -64,17 +53,21 @@ class Service(models.Model):
 
 
 class Ticket(models.Model):
+    ticket_number = models.CharField(max_length=50, unique=True, blank=True)
     phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
     broken_part = models.ForeignKey(Part, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    booking_date = models.DateField(auto_now_add=True)
-    status = models.IntegerField(choices=STATUS, default=0)
-    created_on = models.DateTimeField(auto_now_add=True)
+    requester = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="requester_ticket", null=True, blank=True
+    )
     imei = models.CharField(max_length=15)
     issue_description = models.TextField()
+    status = models.IntegerField(choices=STATUS, default=0)
+    created_on = models.DateTimeField(auto_now_add=True) 
+    # To delete
+    booking_date = models.DateField(auto_now_add=True)
     created_by = models.ForeignKey(
         User, on_delete=models.SET_NULL, blank=True, null=True)
-    ticket_number = models.CharField(max_length=50, unique=True, blank=True)
+    # customer =  models.CharField(max_length=15)
 
 # Auto generate ticket number
     def generate_ticket_number(self):
@@ -94,6 +87,9 @@ class Ticket(models.Model):
             self.ticket_number = self.generate_ticket_number()
 
         super().save(*args, **kwargs)
+
+    class Meta:
+        ordering = ["-created_on"]
 
     def __str__(self):
         return f"{self.ticket_number} {self.phonemodel} {self.broken_part} for {self.customer}"
