@@ -11,7 +11,6 @@ class PostAdmin(SummernoteModelAdmin):
         'imei',
         'phonemodel',
         'broken_part',
-        'booking_date',
         'issue_description',
         'status',
         'created_on'
@@ -23,7 +22,6 @@ class PostAdmin(SummernoteModelAdmin):
     list_filter = (
         'status',
         'phonemodel__manufacturer',
-        'booking_date'
         )
     # prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('issue_description',)

@@ -6,7 +6,6 @@ class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
         fields = [
-            "requester",
             "phonemodel",
             "broken_part",
             "issue_description",

@@ -51,13 +51,15 @@ def ticket_details(request):
 def create_ticket(request, slug):
     phone_model = get_object_or_404(Phonemodel, slug=slug)
 
-    ticket_form = TicketForm()
+    ticket_form = TicketForm({'requester': request.user})
 
     if request.method == "POST":
         ticket_form = TicketForm(data=request.POST)
 
         if ticket_form.is_valid():
-            ticket_form.save()
+            ticket = ticket_form.save(commit=False)
+            ticket.requester = request.user
+            ticket.save()
             messages.add_message(request, messages.SUCCESS, "Ticket has been submitted succesfully!")
             ticket_form = TicketForm()
 

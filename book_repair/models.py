@@ -63,10 +63,6 @@ class Ticket(models.Model):
     issue_description = models.TextField()
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True) 
-    # To delete
-    booking_date = models.DateField(auto_now_add=True)
-    created_by = models.ForeignKey(
-        User, on_delete=models.SET_NULL, blank=True, null=True)
 
 # Auto generate ticket number
     def generate_ticket_number(self):
