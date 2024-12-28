@@ -72,7 +72,8 @@ class Ticket(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     imei = models.CharField(max_length=15)
     issue_description = models.TextField()
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    created_by = models.ForeignKey(
+        User, on_delete=models.SET_NULL, blank=True, null=True)
     ticket_number = models.CharField(max_length=50, unique=True, blank=True)
 
 # Auto generate ticket number
@@ -95,4 +96,4 @@ class Ticket(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.ticket_number}{self.phonemodel} {self.broken_part} for {self.customer}"
+        return f"{self.ticket_number} {self.phonemodel} {self.broken_part} for {self.customer}"

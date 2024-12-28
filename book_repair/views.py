@@ -46,13 +46,6 @@ def ticket_details(request):
         )
 
 
-# Edit ticket
-def edit_ticket(request, id):
-    ticket = get_object_or_404(Ticket, id=id)
-
-    return render(request, 'book_repair/edit_ticket.html', {'ticket': ticket})
-
-
 # Create a ticket
 @login_required
 def create_ticket(request, slug):
@@ -81,8 +74,8 @@ def create_ticket(request, slug):
         }
     )
 
-# Create customer
 
+# Create customer
 def create_customer(request):
 
     customer_form = CustomerForm()
@@ -92,8 +85,9 @@ def create_customer(request):
 
         if customer_form.is_valid():
             customer_form.save()
-            messages.add_message(request, messages.SUCCESS, "Ticket has been submitted succesfully!")
-            customer_form = CustomerForm()
+            messages.add_message(
+                request, messages.SUCCESS, "Ticket created!"
+                )
 
     else:
         customer_form = CustomerForm()
@@ -106,3 +100,27 @@ def create_customer(request):
 
         }
     )
+
+
+# Edit ticket
+def edit_ticket(request, id):
+
+    ticket = get_object_or_404(Ticket, id=id)
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+
+        ticket_form = TicketForm(request.POST, instance=ticket)
+
+        if action == 'update' and ticket_form.is_valid():
+            ticket_form.save()
+
+        elif action == 'delete':
+            ticket.delete()
+
+    else:
+        ticket_form = TicketForm(instance=ticket)
+
+    return render(
+        request, 'book_repair/edit_ticket.html', {'ticket_form': ticket_form, 'ticket': ticket}
+        )
