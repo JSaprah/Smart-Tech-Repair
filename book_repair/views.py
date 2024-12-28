@@ -39,8 +39,7 @@ def phones_list(request):
 # Ticket details page
 @login_required
 def ticket_details(request):
-    # tickets = Ticket.objects.filter(created_by=request.user)
-    tickets = Ticket.objects.all()
+    tickets = Ticket.objects.filter(requester=request.user)
 
     return render(
         request, "book_repair/ticket_details.html", {'tickets': tickets}
