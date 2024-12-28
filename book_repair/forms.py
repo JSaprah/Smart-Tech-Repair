@@ -1,5 +1,5 @@
 from django import forms
-from .models import Ticket
+from .models import Ticket, Phonemodel
 
 
 class TicketForm(forms.ModelForm):
@@ -11,3 +11,7 @@ class TicketForm(forms.ModelForm):
             "issue_description",
             "imei"
             ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['phonemodel'].queryset = Phonemodel.objects.all()

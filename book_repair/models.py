@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import User
 from django.utils.text import slugify
 
 STATUS = ((0, "Pending"), (1, "In progress"), (2, "Completed"))
