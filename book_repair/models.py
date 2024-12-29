@@ -5,8 +5,6 @@ from django.utils.text import slugify
 
 STATUS = ((0, "Pending"), (1, "In progress"), (2, "Completed"))
 MANUFACTURER = (("Apple", "Apple"), ("Samsung", "Samsung"))
-# MAKE = ((1, "iPhone 16"), (2, "iPhone 15"))
-# REPAIR_DURATION = 1
 PART = (
     ("Diagnostic Services", "Diagnostic Services"),
     ("Screen Replacement", "Screen Replacement"),
@@ -57,8 +55,10 @@ class Ticket(models.Model):
     ticket_number = models.CharField(max_length=50, unique=True, blank=True)
     phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
     broken_part = models.ForeignKey(Part, on_delete=models.CASCADE)
-    requester = models.ForeignKey(User, on_delete=models.CASCADE, related_name="requester_ticket", null=True, blank=True
-    )
+    requester = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        related_name="requester_ticket", null=True, blank=True
+        )
     imei = models.CharField(max_length=15)
     issue_description = models.TextField()
     status = models.IntegerField(choices=STATUS, default=0)
@@ -87,4 +87,4 @@ class Ticket(models.Model):
         ordering = ["-created_on"]
 
     def __str__(self):
-        return f"{self.ticket_number} {self.phonemodel} {self.broken_part} for {self.customer}"
+        return f"{self.ticket_number}"

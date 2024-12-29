@@ -8,15 +8,25 @@
 
             <h5 class="subtitle mt-4">Your request has been submitted!</h5>
 
-            <h6 class="m-5"> A member of the Smart Tech team will contact you in 2 working details to discuss about your repair request. You can view or edit your ticket details by navigating to ticket details from the top navigation. </h6>
-            <h6> The details of your request are: </h6>
+            <h6 class="m-5"> A member of the Smart Tech team will contact you in 2 working details to discuss about your
+                repair request. You can view or edit your ticket details by navigating to ticket details from the top
+                navigation. </h6>
 
-            <ul>
-                <li>Ticket Number: {{ ticket.ticket_number }}</li>
-                <li>Service: {{ ticket.broken_part }}</li>
-                <li>IMEI Number: {{ ticket.imei }}</li>
-                <li>Description: {{ ticket.issue_description }}</li>
-            </ul>
+            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">The details of your request are:</div>
+                <div class="card-body">
+                    <h5 class="card-title">Ticket Number: {{ ticket.ticket_number }}</h5>
+                    <p class="card-text">
+                        <ul>
+                            <li>Service: {{ ticket.broken_part }}</li>
+                            <li>IMEI Number: {{ ticket.imei }}</li>
+                            <li>Description: {{ ticket.issue_description }}</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
