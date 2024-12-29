@@ -22,6 +22,7 @@ def login(request):
 def phones_list(request):
 
     search_phone = request.GET.get('query', '')
+
     if search_phone:
         phones = Phonemodel.objects.filter(
             slug__icontains=search_phone,
