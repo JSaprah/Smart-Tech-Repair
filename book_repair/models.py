@@ -22,6 +22,10 @@ PART = (
 
 
 class Phonemodel(models.Model):
+    """
+    Stores the phonemodels
+
+    """
     manufacturer = models.CharField(max_length=50, choices=MANUFACTURER)
     series = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
@@ -36,6 +40,9 @@ class Phonemodel(models.Model):
 
 
 class Part(models.Model):
+    """
+    Stores the parts of the phone that can be repaired
+    """
     part = models.CharField(max_length=50, choices=PART)
 
     def __str__(self):
@@ -43,6 +50,10 @@ class Part(models.Model):
 
 
 class Service(models.Model):
+    """
+    Combines the phonemodel and the parts and determines the price of the repairing
+    (Unused, left it in the project for future enhancements)
+    """
     phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
     broken_part = models.ForeignKey(Part, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=50)
@@ -52,6 +63,9 @@ class Service(models.Model):
 
 
 class Ticket(models.Model):
+    """
+    For creating tickets
+    """
     ticket_number = models.CharField(max_length=50, unique=True, blank=True)
     phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
     broken_part = models.ForeignKey(Part, on_delete=models.CASCADE)
