@@ -1,5 +1,6 @@
 from django import forms
 from .models import Ticket, Phonemodel
+from django_summernote.widgets import SummernoteWidget
 
 
 class TicketForm(forms.ModelForm):
@@ -11,6 +12,9 @@ class TicketForm(forms.ModelForm):
             "issue_description",
             "imei"
             ]
+        widgets = {
+            'issue_description': SummernoteWidget(),
+            }
 
     def __init__(self, *args, **kwargs):
         phone_model = kwargs.pop('phone_model', None)
@@ -18,4 +22,6 @@ class TicketForm(forms.ModelForm):
 
         if phone_model:
             self.fields['phone_model'].initial = phone_model
-            self.fields['phone_model'].queryset = Phonemodel.objects.filter(id=phone_model.id)
+            self.fields['phone_model'].queryset = Phonemodel.objects.filter(
+                id=phone_model.id
+                )

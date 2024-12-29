@@ -51,7 +51,8 @@ class Part(models.Model):
 
 class Service(models.Model):
     """
-    Combines the phonemodel and the parts and determines the price of the repairing
+    Combines the phonemodel and the parts
+    Determines the price of the repairing
     (Unused, left it in the project for future enhancements)
     """
     phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
@@ -64,7 +65,7 @@ class Service(models.Model):
 
 class Ticket(models.Model):
     """
-    For creating tickets
+    For creating tickets for repair requests
     """
     ticket_number = models.CharField(max_length=50, unique=True, blank=True)
     phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
