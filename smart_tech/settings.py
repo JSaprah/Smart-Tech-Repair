@@ -35,7 +35,6 @@ ALLOWED_HOSTS = [
     '.herokuapp.com'
     ]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -61,6 +60,11 @@ LOGOUT_REDIRECT_URL = '/'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 
 MIDDLEWARE = [
@@ -160,3 +164,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

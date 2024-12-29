@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # from django.http import HttpResponseRedirect
 
-
 # Create your views here.
+
 
 # Home page
 def home(request):
@@ -24,7 +24,7 @@ def phones_list(request):
     search_phone = request.GET.get('query', '')
     if search_phone:
         phones = Phonemodel.objects.filter(
-            series__icontains=search_phone,
+            slug__icontains=search_phone,
             )
     else:
         phones = phones = Phonemodel.objects.all()
@@ -59,11 +59,11 @@ def create_ticket(request, slug):
             ticket.requester = request.user
             ticket.phone_model = phone_model
             ticket.save()
-            messages.add_message(request, messages.SUCCESS, "Ticket has been submitted succesfully!")
-            ticket_form = TicketForm(initial={'phone_model': phone_model})
+            ticket_number = ticket.ticket_number
+            return redirect('confirmation', ticket_number=ticket_number)
 
     else:
-        ticket_form = TicketForm(initial={'phone_model': phone_model})
+        ticket_form = TicketForm()
 
     return render(
         request,
@@ -73,6 +73,7 @@ def create_ticket(request, slug):
             "phone_model": phone_model,
         }
     )
+
 
 # Edit ticket
 def edit_ticket(request, id):
@@ -86,13 +87,25 @@ def edit_ticket(request, id):
 
         if action == 'update' and ticket_form.is_valid():
             ticket_form.save()
+            return redirect('ticket_details')
 
         elif action == 'delete':
             ticket.delete()
+            return redirect('ticket_details')
 
     else:
         ticket_form = TicketForm(instance=ticket)
 
     return render(
         request, 'book_repair/edit_ticket.html', {'ticket_form': ticket_form, 'ticket': ticket}
+        )
+
+
+# Confirmation
+def confirmation(request, ticket_number):
+
+    ticket = get_object_or_404(Ticket, ticket_number=ticket_number)
+
+    return render(
+        request, "book_repair/ticket_confirmation.html", {'ticket': ticket}
         )

@@ -13,5 +13,9 @@ class TicketForm(forms.ModelForm):
             ]
 
     def __init__(self, *args, **kwargs):
+        phone_model = kwargs.pop('phone_model', None)
         super().__init__(*args, **kwargs)
-        self.fields['phonemodel'].queryset = Phonemodel.objects.all()
+
+        if phone_model:
+            self.fields['phone_model'].initial = phone_model
+            self.fields['phone_model'].queryset = Phonemodel.objects.filter(id=phone_model.id)

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 
+
 STATUS = ((0, "Pending"), (1, "In progress"), (2, "Completed"))
 MANUFACTURER = (("Apple", "Apple"), ("Samsung", "Samsung"))
 # MAKE = ((1, "iPhone 16"), (2, "iPhone 15"))
@@ -56,8 +57,7 @@ class Ticket(models.Model):
     ticket_number = models.CharField(max_length=50, unique=True, blank=True)
     phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
     broken_part = models.ForeignKey(Part, on_delete=models.CASCADE)
-    requester = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="requester_ticket", null=True, blank=True
+    requester = models.ForeignKey(User, on_delete=models.CASCADE, related_name="requester_ticket", null=True, blank=True
     )
     imei = models.CharField(max_length=15)
     issue_description = models.TextField()
