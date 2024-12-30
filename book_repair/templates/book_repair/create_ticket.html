@@ -5,21 +5,11 @@
 
 <div class="container">
     <h5 class="text-center mt-4 subtitle">Fill in the form to create a ticket for: {{ phone_model.series }}</h5>
-
-    <div class="row">
-
-        <div class="col-9">
-            <form method="post">
-                {% csrf_token %}
-                {{ ticket_form | crispy }}
-                <button class="btn btn-secondary" type="submit">Submit</button>
-            </form>
-        </div>
-
-    </div>
-
-</div>
-
+    <form method="post">
+        {% csrf_token %}
+        {{ ticket_form | crispy }}
+        <button class="btn btn-secondary" type="submit">Submit</button>
+    </form>
 </div>
 
 
