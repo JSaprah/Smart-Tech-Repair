@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Phonemodel, Ticket
-from .forms import TicketForm
+from .forms import TicketForm, CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth import login
 # from django.http import HttpResponseRedirect
 
 
@@ -16,6 +17,18 @@ def home(request):
 # Login page
 def login(request):
     return render(request, "book_repair/login.html")
+
+
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = CustomUserCreationForm()
+
+    return render(request, 'book_repair/register.html', {'form': form})
 
 
 # Returns all Phone models
