@@ -14,12 +14,18 @@ def home(request):
     return render(request, "book_repair/index.html")
 
 
-# Login page
 def login(request):
+    """
+    This view is used as for the login page
+    """
     return render(request, "book_repair/login.html")
 
 
 def register(request):
+    """
+    This view is used as for the custom register page
+    The emailfield has been made mandatory for contacting purposes
+    """
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -31,8 +37,11 @@ def register(request):
     return render(request, 'book_repair/register.html', {'form': form})
 
 
-# Returns all Phone models
 def phones_list(request):
+    """
+    This view shows all the phonemodels to select from
+    With an additional functionality to search
+    """
 
     search_phone = request.GET.get('query', '')
 
@@ -50,19 +59,14 @@ def phones_list(request):
         )
 
 
-# Ticket details page
-@login_required
-def ticket_details(request):
-    tickets = Ticket.objects.filter(requester=request.user)
-
-    return render(
-        request, "book_repair/ticket_details.html", {'tickets': tickets}
-        )
-
-
-# Create a ticket
 @login_required
 def create_ticket(request, slug):
+    """
+    This is the follow up view for phonemodels. 
+    It takes two arguments, the request and the slug.
+    From here the user can fill in details for the phone and create a ticket.
+    To create a ticket the user needs to be logged in
+    """
     phone_model = get_object_or_404(Phonemodel, slug=slug)
 
     if request.method == "POST":
@@ -89,8 +93,24 @@ def create_ticket(request, slug):
     )
 
 
-# Edit ticket
+@login_required
+def ticket_details(request):
+    """
+    This view shows an overview of the tickets created by the logged in user
+    The user needs to be logged in
+    """
+    tickets = Ticket.objects.filter(requester=request.user)
+
+    return render(
+        request, "book_repair/ticket_details.html", {'tickets': tickets}
+        )
+
+
 def edit_ticket(request, id):
+    """
+    This view takes the id from the ticket details.
+    It allows the user to edit or delete the ticket.
+    """
 
     ticket = get_object_or_404(Ticket, id=id)
 
@@ -111,13 +131,16 @@ def edit_ticket(request, id):
         ticket_form = TicketForm(instance=ticket)
 
     return render(
-        request, 'book_repair/edit_ticket.html', {'ticket_form': ticket_form, 'ticket': ticket}
+        request, 'book_repair/edit_ticket.html', {
+            'ticket_form': ticket_form, 'ticket': ticket
+            }
         )
 
 
-# Confirmation
 def confirmation(request, ticket_number):
-
+    """
+    This view is for confirmation for submitting requests
+    """
     ticket = get_object_or_404(Ticket, ticket_number=ticket_number)
 
     return render(
