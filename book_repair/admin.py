@@ -4,10 +4,14 @@ from django_summernote.admin import SummernoteModelAdmin
 
 
 @admin.register(Ticket)
-class PostAdmin(SummernoteModelAdmin):
+class TicketAdmin(SummernoteModelAdmin):
+    """
+    Allows admin to manage tickets via the admin panel
+    """
 
     list_display = (
         'ticket_number',
+        'requester',
         'imei',
         'phonemodel',
         'broken_part',
@@ -17,17 +21,47 @@ class PostAdmin(SummernoteModelAdmin):
         )
     readonly_fields = ['ticket_number']
     search_fields = [
-        'phonemodel__make__icontains',
-        'phonemodel__series',]
+        'phonemodel__slug',
+        'imei',
+        'ticket_number',
+        ]
     list_filter = (
         'status',
         'phonemodel__manufacturer',
+        'broken_part',
         )
-    # prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('issue_description',)
 
 
-# Register your models here.
+@admin.register(Phonemodel)
+class PhoneAdmin(SummernoteModelAdmin):
+    """
+    Allows admin to manage phonemodels via the admin panel
+    """
+
+    list_display = (
+        'id',
+        'manufacturer',
+        'series',
+        )
+    search_fields = [
+        'slug__icontains',]
+    list_filter = (
+        'manufacturer',
+        )
+
+
+@admin.register(Part)
+class PartAdmin(SummernoteModelAdmin):
+    """
+    Allows Admin to manage parts via the admin panel
+    """
+    list_display = (
+        'part',
+    )
+    search_fields = [
+        'part__icontains',
+    ]
+
+
 admin.site.register(Service)
-admin.site.register(Phonemodel)
-admin.site.register(Part)

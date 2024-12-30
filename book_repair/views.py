@@ -5,11 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # from django.http import HttpResponseRedirect
 
-# Create your views here.
 
-
-# Home page
 def home(request):
+    """
+    This view is used as an introduction to the company and the repair services
+    """
     return render(request, "book_repair/index.html")
 
 

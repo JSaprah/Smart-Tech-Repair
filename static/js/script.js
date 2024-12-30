@@ -2,15 +2,15 @@
 const phones = document.querySelectorAll('.phone');
 
 // Add event listeners to filter buttons
-document.getElementById('apple-btn').addEventListener('click', function () {
+document.getElementById('#apple-btn').addEventListener('click', function () {
     filterPhones('Apple');
 });
 
-document.getElementById('samsung-btn').addEventListener('click', function () {
+document.getElementById('#samsung-btn').addEventListener('click', function () {
     filterPhones('Samsung');
 });
 
-document.getElementById('all-btn').addEventListener('click', function () {
+document.getElementById('#all-btn').addEventListener('click', function () {
     filterPhones('all');
 });
 
