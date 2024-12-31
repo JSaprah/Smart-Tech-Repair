@@ -43,6 +43,7 @@ class PhoneAdmin(SummernoteModelAdmin):
         'id',
         'manufacturer',
         'series',
+        'slug',
         )
     search_fields = [
         'slug__icontains',]

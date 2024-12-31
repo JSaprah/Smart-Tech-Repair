@@ -18,15 +18,11 @@ class TicketForm(forms.ModelForm):
             'issue_description': SummernoteWidget(),
             }
 
-    def __init__(self, *args, **kwargs):
-        phone_model = kwargs.pop('phone_model', None)
-        super().__init__(*args, **kwargs)
-
-        if phone_model:
-            self.fields['phone_model'].initial = phone_model
-            self.fields['phone_model'].queryset = Phonemodel.objects.filter(
-                id=phone_model.id
-                )
+        phonemodel = forms.ModelChoiceField(
+            queryset=Phonemodel.objects.all(),
+            widget=forms.Select(),
+            required=False
+        )
 
 
 class CustomUserCreationForm(UserCreationForm):

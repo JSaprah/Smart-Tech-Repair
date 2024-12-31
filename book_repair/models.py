@@ -36,7 +36,7 @@ class Phonemodel(models.Model):
         super(Phonemodel, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.manufacturer} {self.series}"
+        return f"{self.slug}"
 
 
 class Part(models.Model):
@@ -77,7 +77,7 @@ class Ticket(models.Model):
     imei = models.CharField(max_length=15)
     issue_description = models.TextField()
     status = models.IntegerField(choices=STATUS, default=0)
-    created_on = models.DateTimeField(auto_now_add=True) 
+    created_on = models.DateTimeField(auto_now_add=True)
 
 # Auto generate ticket number
     def generate_ticket_number(self):

@@ -1,8 +1,4 @@
 {% load static %}
-{% url 'account_login' as login_url %}
-{% url 'account_signup' as signup_url %}
-{% url 'account_logout' as logout_url %}
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,110 +23,93 @@
     <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
 </head>
 
-<body>
-    <header>
+<body class="d-flex flex-column h-100 main-bg no-gutters">
 
-        <div class="row no-gutters">
+    <div class="row no-gutters header">
 
-            <a class="logo col-md-2" href="{% url 'home' %}">.</a>
+        <a class="logo col-md-2" href="{% url 'home' %}">.</a>
 
-            <nav class="col-md-10 navcontainer">
-                
-                <div class="col menu">
+        <nav class="col-md-10 navcontainer">
 
-                    <ul id="navigation" class="list-inline mt-2 d-md-flex justify-content-end">
+            <div class="col menu">
 
-                        <li class=" col-md-2 list-inline-item nav-item">
-                            <a href="{% url 'home' %}"
-                                class="nav-active {% if request.path == '/' %}active{% endif %}">Home</a>
-                        </li>
+                <ul id="navigation" class="list-inline mt-3 d-md-flex justify-content-end">
 
-                        <li class="col-md-2 list-inline-item nav-item">
-                            <a href="{% url 'booking' %}"
-                                class="nav-active {% if request.path == '/booking/' %} active{% endif %}">Book
-                                Repair</a>
-                        </li>
-
-                        <li class="col-md-2 list-inline-item nav-item">
-                            <a href="{% url 'ticket_details' %}"
-                                class="nav-active {% if request.path == '/ticket_details/' %}active{% endif %}">Ticket details</a>
-                        </li>
-
-                        <li class="col-md-2 list-inline-item nav-item">
-                            <a href="{% url 'login' %}"
-                                class="nav-active {% if request.path == '/login/' %}active{% endif %}">Account</a>
-                        </li>
-
-                        <li class="col-md-2 list-inline-item">
-                            {% if user.is_authenticated %}
-                            <p class="m-0 user-banner">
-                                Logged in as {{ user }}
-                            </p>
-                            {% else %}
-                            <p class="m-0 user-banner">Logged out</p>
-                            {% endif %}
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
-        </div>
-
-
-    </header>
-    
-
-
-    <section>
-
-        <div class="container-fluid p-0" mt-0>
-
-            <div class="top-image">
-
-            </div>
-        </div>
-
-        {% block content %}{% endblock %}
-
-    </section>
-
-
-    <footer>
-
-        <div class="row no-gutters">
-
-            <div class="col container-fluid">
-                <ul class="list-inline footer-container m-0">
-                    <li class="list-inline-item col-md-3">
-                        <a target="_blank" href="https://en-gb.facebook.com/login/">
-                            <i class="fa fa-facebook social-link" aria-hidden="true"></i>
-                            <span class="sr-only">Facebook</span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item col-md-3">
-                        <a target="_blank" href="https://www.instagram.com/">
-                            <i class="fa fa-instagram social-link" aria-hidden="true"></i>
-                            <span class="sr-only">Instagram</span>
-                        </a>
+                    <li class=" col-md-2 list-inline-item nav-item text-center">
+                        <a href="{% url 'home' %}"
+                            class="nav-active {% if request.path == '/' %}active{% endif %}">Home</a>
                     </li>
 
-                    <li class="list-inline-item col-md-3">
-                        <a target="_blank" href="#">
-                            <i class="fa fa-google social-link" aria-hidden="true"></i>
-                            <span class="sr-only">Google</span>
-                        </a>
+                    <li class="col-md-2 list-inline-item nav-item text-center">
+                        <a href="{% url 'booking' %}"
+                            class="nav-active {% if request.path == '/booking/' %} active{% endif %}">Book
+                            Repair</a>
+                    </li>
+
+                    <li class="col-md-2 list-inline-item nav-item text-center">
+                        <a href="{% url 'ticket_details' %}"
+                            class="nav-active {% if request.path == '/ticket_details/' %}active{% endif %}">Ticket
+                            details</a>
+                    </li>
+
+                    <li class="col-md-2 list-inline-item nav-item text-center">
+                        <a href="{% url 'login' %}"
+                            class="nav-active {% if request.path == '/login/' %}active{% endif %}">Account</a>
+                    </li>
+
+                    <li class="col-md-2 list-inline-item text-center">
+                        {% if user.is_authenticated %}
+                        <p class="m-0 user-banner">
+                            Logged in as {{ user }}
+                        </p>
+                        {% else %}
+                        <p class="m-0 user-banner">Logged out</p>
+                        {% endif %}
                     </li>
                 </ul>
             </div>
+        </nav>
 
-        </div>
+    </div>
+
+    <div class="container-fluid m-0 p-0 top-image"></div>
 
 
+    <main class="flex-shrink-0 main-bg">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3">
+        <ul class="m-0 text-center">
+            <li class="list-inline-item">
+                <a target="_blank" href="https://en-gb.facebook.com/login/" class="text-decoration-none">
+                    <i class="fa fa-facebook social-link" aria-hidden="true"></i>
+                    <span class="sr-only">Facebook</span>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a target="_blank" href="https://www.instagram.com/" class="text-decoration-none">
+                    <i class="fa fa-instagram social-link" aria-hidden="true"></i>
+                    <span class="sr-only">Instagram</span>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a target="_blank" href="https://x.com/?mx=2" class="text-decoration-none">
+                    <i class="fa fa-twitter social-link" aria-hidden="true"></i>
+                    <span class="sr-only">Twitter</span>
+                </a>
+            </li>
+        </ul>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="/static/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
+
 </body>
 
 </html>

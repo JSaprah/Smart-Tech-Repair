@@ -67,7 +67,10 @@ def create_ticket(request, slug):
     From here the user can fill in details for the phone and create a ticket.
     To create a ticket the user needs to be logged in
     """
+
     phone_model = get_object_or_404(Phonemodel, slug=slug)
+    phone_id = phone_model.id
+    print(phone_id)
 
     if request.method == "POST":
         ticket_form = TicketForm(data=request.POST)
@@ -81,7 +84,7 @@ def create_ticket(request, slug):
             return redirect('confirmation', ticket_number=ticket_number)
 
     else:
-        ticket_form = TicketForm()
+        ticket_form = TicketForm(initial={'phone_model': phone_model})
 
     return render(
         request,

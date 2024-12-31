@@ -5,6 +5,7 @@
 
 <div class="container">
     <h5 class="text-center mt-4 subtitle">Fill in the form to create a ticket for: {{ phone_model.series }}</h5>
+    <p>Selected phone Model: {{ phone_model.series }}</p>
     <form method="post">
         {% csrf_token %}
         {{ ticket_form | crispy }}

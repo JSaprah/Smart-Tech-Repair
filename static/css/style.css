@@ -1,4 +1,4 @@
-/*--------------------------------------------Colors*/
+/*--------------------------------------------General*/
 
 body{
     background-color: rgba(211,211,211,0.5);
@@ -44,12 +44,6 @@ header{
 
 .navcontainer{
     background-color: rgba(0, 0, 0);
-    text-align: center;
-}
-
-.nav-item{
-    text-align: center;
-    padding: 0;
 }
 
 .nav-item a{
@@ -74,8 +68,8 @@ header{
 /*--------------------------------------------Footer*/
 
 
-.footer-container{
-    background-color: rgba(0, 0, 0,0.81);
+.footer{
+    background-color: black;
     text-align: center;
 }
 
@@ -83,11 +77,9 @@ header{
     width: 32px;
     height: 32px;
     padding: 12px 0;
-    margin: 6px;
     border-radius: 50%;
     font-size: 13px;
     line-height: 7px;
-    text-align: center;
     color: #fafafa;
     background: rgba(165,52,52);
 }
@@ -101,14 +93,11 @@ header{
 .phone-model-card{
     text-align: center;
     background-color: rgba(63, 99, 115, 0.229);
-    text-decoration: none;
     color: black;
 }
 
 
 .phone-model-card:hover{
     background-color: rgba(165,52,52);
-    text-decoration: none;
     color: white;
 }
-
