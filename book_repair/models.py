@@ -36,7 +36,7 @@ class Phonemodel(models.Model):
         super(Phonemodel, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.slug}"
+        return f"{self.series}"
 
 
 class Part(models.Model):
