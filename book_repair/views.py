@@ -69,8 +69,6 @@ def create_ticket(request, slug):
     """
 
     phone_model = get_object_or_404(Phonemodel, slug=slug)
-    phone_id = phone_model.id
-    print(phone_id)
 
     if request.method == "POST":
         ticket_form = TicketForm(data=request.POST)
@@ -78,13 +76,12 @@ def create_ticket(request, slug):
         if ticket_form.is_valid():
             ticket = ticket_form.save(commit=False)
             ticket.requester = request.user
-            ticket.phone_model = phone_model
+            ticket.phonemodel = phone_model
             ticket.save()
-            ticket_number = ticket.ticket_number
-            return redirect('confirmation', ticket_number=ticket_number)
+            return redirect('confirmation', ticket_number=ticket.ticket_number)
 
     else:
-        ticket_form = TicketForm(initial={'phone_model': phone_model})
+        ticket_form = TicketForm()
 
     return render(
         request,

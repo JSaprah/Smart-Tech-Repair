@@ -4,16 +4,21 @@
 {% block content %}
 
 <section class="container">
-    <div class="row mt-5">
-        <div class="col">
-            <h5 class="text-center mt-4 subtitle">Fill in the form to create a ticket for: {{ phone_model.series }}</h5>
-            <form method="POST">
-                {% csrf_token %}
-                {{ ticket_form | crispy }}
-                <button class="btn btn-secondary" type="submit">Submit</button>
-            </form>
-        </div>
+
+    <div class="col">
+        <h5 class="text-center mt-4 subtitle">Fill in the form to create a ticket for:
+            {{ phone_model.series }}</h5>
+        <form method="POST">
+            {% csrf_token %}
+            {{ ticket_form | crispy }}
+            <button class="btn btn-secondary" type="submit">Submit</button>
+        </form>
     </div>
+
 </section>
+
+
+
+
 
 {% endblock content %}

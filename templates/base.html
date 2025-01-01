@@ -33,28 +33,29 @@
 
             <div class="col menu">
 
+                {% with request.resolver_match.url_name as url_name %}
                 <ul id="navigation" class="list-inline mt-3 d-md-flex justify-content-end">
 
                     <li class=" col-md-2 list-inline-item nav-item text-center">
                         <a href="{% url 'home' %}"
-                            class="nav-active {% if request.path == '/' %}active{% endif %}">Home</a>
+                            class="nav-active {% if url_name == 'home' %}active{% endif %}">Home</a>
                     </li>
 
                     <li class="col-md-2 list-inline-item nav-item text-center">
                         <a href="{% url 'booking' %}"
-                            class="nav-active {% if request.path == '/booking/' %} active{% endif %}">Book
+                            class="nav-active {% if url_name == 'booking' or url_name == 'create_ticket' %} active{% endif %}">Book
                             Repair</a>
                     </li>
 
                     <li class="col-md-2 list-inline-item nav-item text-center">
                         <a href="{% url 'ticket_details' %}"
-                            class="nav-active {% if request.path == '/ticket_details/' %}active{% endif %}">Ticket
+                            class="nav-active {% if url_name == 'ticket_details' or url_name == 'edit_ticket' %}active{% endif %}">Ticket
                             details</a>
                     </li>
 
                     <li class="col-md-2 list-inline-item nav-item text-center">
                         <a href="{% url 'login' %}"
-                            class="nav-active {% if request.path == '/login/' %}active{% endif %}">Account</a>
+                            class="nav-active {% if url_name == 'login' %}active{% endif %}">Account</a>
                     </li>
 
                     <li class="col-md-2 list-inline-item text-center">
@@ -67,6 +68,7 @@
                         {% endif %}
                     </li>
                 </ul>
+                {% endwith %}
             </div>
         </nav>
 

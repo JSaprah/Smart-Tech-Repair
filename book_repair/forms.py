@@ -6,10 +6,10 @@ from django.contrib.auth.models import User
 
 
 class TicketForm(forms.ModelForm):
+
     class Meta:
         model = Ticket
         fields = [
-            "phonemodel",
             "broken_part",
             "issue_description",
             "imei"
@@ -17,12 +17,6 @@ class TicketForm(forms.ModelForm):
         widgets = {
             'issue_description': SummernoteWidget(),
             }
-
-        phonemodel = forms.ModelChoiceField(
-            queryset=Phonemodel.objects.all(),
-            widget=forms.Select(),
-            required=False
-        )
 
 
 class CustomUserCreationForm(UserCreationForm):
