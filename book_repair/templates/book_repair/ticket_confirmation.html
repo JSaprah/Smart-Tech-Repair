@@ -20,7 +20,7 @@
                         <ul>
                             <li>Service: {{ ticket.broken_part }}</li>
                             <li>IMEI Number: {{ ticket.imei }}</li>
-                            <li>Description: {{ ticket.issue_description }}</li>
+                            <li>Description: {{ ticket.issue_description | safe }}</li>
                         </ul>
                     </p>
                 </div>

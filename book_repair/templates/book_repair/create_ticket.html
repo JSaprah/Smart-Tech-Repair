@@ -3,22 +3,32 @@
 
 {% block content %}
 
-<section class="container">
+<section">
 
-    <div class="col">
+    <div class="row">
+
         <h5 class="text-center mt-4 subtitle">Fill in the form to create a ticket for:
             {{ phone_model.series }}</h5>
+
+
         <form method="POST">
-            {% csrf_token %}
-            {{ ticket_form | crispy }}
-            <button class="btn btn-secondary" type="submit">Submit</button>
+            <div>
+                {% csrf_token %}
+                {{ ticket_form | crispy }}
+
+            </div>
+
+
+            <button class="btn btn-warning btn-block m-3" type="submit">Submit</button>
+
+
         </form>
     </div>
 
-</section>
+    </section>
 
 
 
 
 
-{% endblock content %}
+    {% endblock content %}
