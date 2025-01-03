@@ -27,6 +27,7 @@ header{
     background-color: rgba(211,217,12);
     height: auto;
     visibility: visible;
+    z-index: 10;
 
 }
 
@@ -100,4 +101,19 @@ header{
 .phone-model-card:hover{
     background-color: rgba(165,52,52);
     color: white;
+}
+
+.dropdown-menu{
+    background-color: black;
+    position: absolute;
+}
+
+.dropdown-item{
+    position: relative;
+}
+
+
+.dropdown-item:hover{
+    color:rgba(211,217,12);
+    background-color: black;
 }

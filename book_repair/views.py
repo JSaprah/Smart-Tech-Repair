@@ -1,9 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Phonemodel, Ticket
-from .forms import TicketForm, CustomUserCreationForm
+from .forms import TicketForm, EditTicketForm, CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth import login
 # from django.http import HttpResponseRedirect
 
 
@@ -14,11 +13,11 @@ def home(request):
     return render(request, "book_repair/index.html")
 
 
-def login(request):
+def account(request):
     """
     This view is used as for the login page
     """
-    return render(request, "book_repair/login.html")
+    return render(request, "book_repair/account.html")
 
 
 def register(request):
@@ -30,7 +29,7 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('account')
     else:
         form = CustomUserCreationForm()
 
@@ -62,7 +61,7 @@ def phones_list(request):
 @login_required
 def create_ticket(request, slug):
     """
-    This is the follow up view for phonemodels. 
+    This is the follow up view for phonemodels.
     It takes two arguments, the request and the slug.
     From here the user can fill in details for the phone and create a ticket.
     To create a ticket the user needs to be logged in
@@ -117,7 +116,7 @@ def edit_ticket(request, id):
     if request.method == 'POST':
         action = request.POST.get('action')
 
-        ticket_form = TicketForm(request.POST, instance=ticket)
+        ticket_form = EditTicketForm(request.POST, instance=ticket)
 
         if action == 'update' and ticket_form.is_valid():
             ticket_form.save()

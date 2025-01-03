@@ -1,6 +1,5 @@
 from django import forms
-from .models import Ticket, Phonemodel
-from django_summernote.widgets import SummernoteWidget
+from .models import Ticket
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -14,9 +13,18 @@ class TicketForm(forms.ModelForm):
             "issue_description",
             "imei"
             ]
-        widgets = {
-            'issue_description': SummernoteWidget(),
-            }
+
+
+class EditTicketForm(forms.ModelForm):
+
+    class Meta:
+        model = Ticket
+        fields = [
+            "phonemodel",
+            "broken_part",
+            "issue_description",
+            "imei"
+            ]
 
 
 class CustomUserCreationForm(UserCreationForm):
