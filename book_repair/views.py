@@ -127,7 +127,7 @@ def edit_ticket(request, id):
             return redirect('ticket_details')
 
     else:
-        ticket_form = TicketForm(instance=ticket)
+        ticket_form = EditTicketForm(instance=ticket)
 
     return render(
         request, 'book_repair/edit_ticket.html', {

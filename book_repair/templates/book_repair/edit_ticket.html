@@ -2,12 +2,32 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+<a href="{{ ticket_details }}" class="btn btn-primary">Go back</a>
 
+<div class="container mt-3">
+    <h5 class="text-center subtitle">Create ticket</h5>
 
     <form method="post">
         {% csrf_token %}
         {{ ticket_form | crispy }}
-        <button class="btn btn-success" type="submit" name="action" value="update">Update</button>
-        <button class="btn btn-danger" type="submit" name="action" value="delete">Delete</button>
+        <button class="btn btn-success btn-lg mb-5" type="submit" name="action" value="update">Update</button>
+        <button class="btn btn-danger btn-lg mb-5" type="submit" name="action" value="delete">Delete</button>
     </form>
-    {% endblock content %}
+
+</div>
+
+</form>
+
+{% if form.errors %}
+<ul>
+    {% for field in form %}
+    {% for error in field.errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+    {% endfor %}
+</ul>
+{% endif %}
+</div>
+
+
+{% endblock content %}
