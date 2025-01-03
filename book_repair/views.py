@@ -101,7 +101,7 @@ def ticket_details(request):
     tickets = Ticket.objects.filter(requester=request.user)
 
     return render(
-        request, "book_repair/ticket_details.html", {'tickets': tickets}
+        request, "book_repair/ticket_details.html", {'tickets': tickets, }
         )
 
 

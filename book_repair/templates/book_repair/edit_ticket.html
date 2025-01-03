@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<a href="{{ ticket_details }}" class="btn btn-primary">Go back</a>
+<a href="{% url 'ticket_details' %}" class="btn btn-primary m-2">Go back</a>
 
 <div class="container mt-3">
     <h5 class="text-center subtitle">Create ticket</h5>

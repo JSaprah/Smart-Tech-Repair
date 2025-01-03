@@ -21,7 +21,7 @@
         <tr>
             <td>{{ ticket.ticket_number }}</td>
             <td>{{ ticket.broken_part }}</td>
-            <td>{{ ticket.status }}</td>
+            <td>{{ ticket.get_status_display }}</td>
             <td>{{ ticket.imei }}</td>
             <td>
                 <a href="{% url 'edit_ticket' ticket.id %}">Edit</a>
