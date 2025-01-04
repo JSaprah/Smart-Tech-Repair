@@ -12,7 +12,7 @@ body{
 
 /*--------------------------------------------Heading*/
 
-header{
+.header{
     position: sticky;
     top: 0;
     z-index: 100;
@@ -116,4 +116,10 @@ header{
 .dropdown-item:hover{
     color:rgba(211,217,12);
     background-color: black;
+}
+
+.alert{
+
+    max-width: 800px;
+    word-wrap: break-word;
 }

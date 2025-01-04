@@ -3,7 +3,6 @@ from .models import Phonemodel, Ticket
 from .forms import TicketForm, EditTicketForm, CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-# from django.http import HttpResponseRedirect
 
 
 def home(request):
@@ -29,7 +28,11 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Registered succesfully, please sign in')
             return redirect('account')
+
     else:
         form = CustomUserCreationForm()
 
@@ -79,6 +82,11 @@ def create_ticket(request, slug):
             ticket.save()
             return redirect('confirmation', ticket_number=ticket.ticket_number)
 
+        else:
+            messages.add_message(
+                request, messages.ERROR,
+                'Ticket could not be created')
+
     else:
         ticket_form = TicketForm()
 
@@ -120,10 +128,22 @@ def edit_ticket(request, id):
 
         if action == 'update' and ticket_form.is_valid():
             ticket_form.save()
+            messages.add_message(
+                request, messages.SUCCESS, 'Ticket updated succesfully!'
+                )
             return redirect('ticket_details')
 
         elif action == 'delete':
             ticket.delete()
+            messages.add_message(
+                request, messages.SUCCESS, 'Ticket deleted succesfully!'
+                )
+            return redirect('ticket_details')
+
+        else:
+            messages.add_message(
+                request, messages.ERROR, 'Changes could not be saved'
+                )
             return redirect('ticket_details')
 
     else:
