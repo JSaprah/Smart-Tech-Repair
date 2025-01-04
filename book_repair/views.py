@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Phonemodel, Ticket
-from .forms import TicketForm, EditTicketForm, CustomUserCreationForm
+from .forms import TicketForm, EditTicketForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -17,26 +17,6 @@ def account(request):
     This view is used as for the login page
     """
     return render(request, "book_repair/account.html")
-
-
-def register(request):
-    """
-    This view is used as for the custom register page
-    The emailfield has been made mandatory for contacting purposes
-    """
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.add_message(
-                request, messages.SUCCESS,
-                'Registered succesfully, please sign in')
-            return render(request, 'templates/account/login.html')
-
-    else:
-        form = CustomUserCreationForm()
-
-    return render(request, 'book_repair/register.html', {'form': form})
 
 
 def phones_list(request):
