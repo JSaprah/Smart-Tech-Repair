@@ -1,17 +1,34 @@
-/*--------------------------------------------Colors*/
+/*Google fonts import*/
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*--------------------------------------------General*/
+
+* {
+    padding: 0;
+    margin: 0;
+}
 
 body{
     background-color: rgba(211,211,211,0.5);
 }
 
+.subtitle{
+    font-family: 'Hind-Madurai', sans-serif;
+    font-weight: 700;
+    background-color: rgba(211,217,12, 0.229);
+}
+
+p{
+    font-family: 'Hind-Madurai', sans-serif;
+}
+
 /*--------------------------------------------Heading*/
 
-header{
+.header{
     position: sticky;
     top: 0;
     z-index: 100;
 }
-
 
 .logo{
     background-image: url(../images/logo.png);
@@ -21,34 +38,26 @@ header{
     background-color: rgba(211,217,12);
     height: auto;
     visibility: visible;
-
+    z-index: 10;
 }
 
 .top-image{
-
+    background-image: url(../images/broken-screen.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     height: 250px;
-
 }
 
 /*--------------------------------------------Navigation*/
 
-
 .navcontainer{
     background-color: rgba(0, 0, 0);
-    text-align: center;
-}
-
-.nav-item{
-    text-align: center;
-    padding: 0;
 }
 
 .nav-item a{
     text-decoration: none;
-    color: white;
+    color: rgba(255,255,255);
 }
 
 .nav-item a:hover{
@@ -59,12 +68,17 @@ header{
     color:rgb(211,217,12);
 }
 
+.user-banner{
+    background-color: rgba(251, 244, 244);
+    color:rgba(165,52,52);
+    padding: 2px;
+}
 
 /*--------------------------------------------Footer*/
 
 
-.footer-container{
-    background-color: rgba(0, 0, 0,0.81);
+.footer{
+    background-color: rgba(0, 0, 0);
     text-align: center;
 }
 
@@ -72,12 +86,10 @@ header{
     width: 32px;
     height: 32px;
     padding: 12px 0;
-    margin: 6px;
     border-radius: 50%;
     font-size: 13px;
     line-height: 7px;
-    text-align: center;
-    color: #fafafa;
+    color: rgba(255,255,255);
     background: rgba(165,52,52);
 }
 
@@ -90,14 +102,38 @@ header{
 .phone-model-card{
     text-align: center;
     background-color: rgba(63, 99, 115, 0.229);
-    text-decoration: none;
     color: black;
 }
 
-
 .phone-model-card:hover{
     background-color: rgba(165,52,52);
-    text-decoration: none;
     color: white;
 }
 
+.dropdown-menu{
+    background-color: black;
+    position: absolute;
+}
+
+.dropdown-item{
+    position: relative;
+}
+
+
+.dropdown-item:hover{
+    color:rgba(211,217,12);
+    background-color: black;
+}
+
+.alert{
+    z-index: 200;
+    max-width: 800px;
+    word-wrap: break-word;
+}
+
+.success{
+    background-color: rgba(0, 128, 0, 0.201)
+}
+.error{
+    background-color: rgba(255, 0, 0, 0.201);
+}
