@@ -68,6 +68,7 @@ class Ticket(models.Model):
     For creating tickets for repair requests
     """
     ticket_number = models.CharField(max_length=50, unique=True, blank=True)
+    email = models.EmailField(unique=False, null=False, blank=False)
     phonemodel = models.ForeignKey(Phonemodel, on_delete=models.CASCADE)
     broken_part = models.ForeignKey(Part, on_delete=models.CASCADE)
     requester = models.ForeignKey(
