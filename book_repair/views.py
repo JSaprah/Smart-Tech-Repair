@@ -31,7 +31,7 @@ def register(request):
             messages.add_message(
                 request, messages.SUCCESS,
                 'Registered succesfully, please sign in')
-            return redirect('account')
+            return render(request, 'templates/account/login.html')
 
     else:
         form = CustomUserCreationForm()

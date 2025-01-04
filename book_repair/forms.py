@@ -29,6 +29,16 @@ class EditTicketForm(forms.ModelForm):
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, label='Email Address')
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(),
+        label="Password",
+        required=True,
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(),
+        label="Confirm Password",
+        required=True,
+    )
 
     class Meta:
         model = User

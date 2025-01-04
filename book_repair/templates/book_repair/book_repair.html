@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h5 class="text-center mt-4 subtitle">Select the phone model to book your repair</h5>
+<h5 class="text-center mt-2 subtitle">Select the phone model to book your repair</h5>
+
+<div class="container text-center">
+
+   <p>At Smart Tech, we specialize in repairs for Apple and Samsung S series devices. To book a repair, simply click on
+      your phone model. You will be directed to a form where you can fill in your details and submit a repair ticket.
+      Once
+      your ticket is submitted, a member of our team will reach out to you within 2 working days to discuss the next
+      steps.
+   </p>
+</div>
 
 <section class="container-fluid">
    <!--Search form-->
@@ -10,8 +20,8 @@
          <form class="form-inline justify-content-center">
             <div class="form-group mx-sm-3 mb-2">
                <label for="searchphone" class="sr-only">Search phone</label>
-               <input type="search" class="form-control" id="searchphone" placeholder="Search phone" aria-label="Search" name="query"
-               value="{{ search_phone }}">
+               <input type="search" class="form-control" id="searchphone" placeholder="Search phone" aria-label="Search"
+                  name="query" value="{{ search_phone }}">
             </div>
             <button type="submit" class="btn btn-danger btn-search-phone mb-2">Search</button>
          </form>
