@@ -46,7 +46,7 @@ class PhoneAdmin(SummernoteModelAdmin):
         'slug',
         )
     search_fields = [
-        'slug__icontains',]
+        'slug__icontains', ]
     list_filter = (
         'manufacturer',
         )
