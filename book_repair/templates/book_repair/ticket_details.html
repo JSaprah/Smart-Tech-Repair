@@ -13,6 +13,7 @@
             <th scope="col">Service</th>
             <th scope="col">Status</th>
             <th scope="col">imei</th>
+            <th scope="col">Description</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -23,6 +24,7 @@
             <td>{{ ticket.broken_part }}</td>
             <td>{{ ticket.get_status_display }}</td>
             <td>{{ ticket.imei }}</td>
+            <td>{{ ticket.issue_description | safe }}</td>
             <td>
                 <a href="{% url 'edit_ticket' ticket.id %}">Edit</a>
             </td>

@@ -2,35 +2,35 @@
 
 {% block content %}
 
+<h5 class="mt-2 text-center subtitle">Your ticket has been submitted</h5>
+
 <section class="container">
+
     <div row>
         <div class="col-12 text-center">
 
-            <h5 class="subtitle mt-2">Your request has been submitted!</h5>
+            <p> A representative from the Smart Tech team will reach out to you within the next two business days to
+                discuss your repair request. In the meantime, you can view or update your ticket details by clicking the
+                button below or by accessing the navigation menu. 
+            </p>
+            <p>Thank you for your patience!</p>
 
-            <h6 class="m-5"> A member of the Smart Tech team will contact you in 2 working details to discuss about your
-                repair request. You can view or edit your ticket details by navigating to ticket details from the top
-                navigation. </h6>
-
-            <div class="card bg-light mb-3" style="max-width: 18rem;">
-                <div class="card-header">The details of your request are:</div>
+            <div class="card text-center mb-3">
+                <div class="card-header">
+                    Ticket details
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">Ticket Number: {{ ticket.ticket_number }}</h5>
-                    <p class="card-text">
-                        <ul>
-                            <li>Service: {{ ticket.broken_part }}</li>
-                            <li>IMEI Number: {{ ticket.imei }}</li>
-                            <li>Description: {{ ticket.issue_description | safe }}</li>
-                        </ul>
-                    </p>
+                    <ul class="card-text list-unstyled">
+                        <li>Service: {{ ticket.broken_part }}</li>
+                        <li>IMEI Number: {{ ticket.imei }}</li>
+                    </ul>
+                    <a href="{% url 'ticket_details' %}" class="btn btn-dark">Ticket details</a>
+                </div>
+                <div class="card-footer text-muted">
+                    {{ ticket.created_on }}
                 </div>
             </div>
-
-
-        </div>
-    </div>
-
 </section>
-
 
 {% endblock content %}

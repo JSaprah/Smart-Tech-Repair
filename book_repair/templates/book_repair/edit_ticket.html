@@ -2,13 +2,13 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<a href="{% url 'ticket_details' %}" class="btn btn-primary m-2">Go back</a>
+<h5 class="text-center subtitle mt-2">Edit ticket {{ ticket.ticket_number }}</h5>
+<a href="{% url 'ticket_details' %}" class="btn btn-danger m-2">Go back</a>
 
-<!-- Button trigger modal -->
-
+<!--Button trigger modal-->
 <div class="container mt-2">
-  <h5 class="text-center subtitle">Edit ticket {{ ticket.ticket_number }}</h5>
 
+<!--Edit form-->
   <form method="post">
     {% csrf_token %}
     {{ ticket_form | crispy }}
@@ -17,7 +17,7 @@
       Delete
     </button>
 
-    <!-- Modal -->
+    <!--Modal-->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -54,6 +54,5 @@
 </ul>
 {% endif %}
 </div>
-
 
 {% endblock content %}

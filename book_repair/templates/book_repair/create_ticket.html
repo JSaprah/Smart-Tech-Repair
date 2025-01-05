@@ -3,20 +3,20 @@
 
 {% block content %}
 
-<a href="{% url 'booking' %}" class="btn btn-primary m-2">Go back</a>
+<h5 class="mt-2 text-center subtitle">Create ticket</h5>
+<a href="{% url 'booking' %}" class="btn btn-danger m-2">Go back</a>
 
+<!--Create ticket form-->
 <div class="container mt-2">
-    <h5 class="text-center subtitle">Create ticket</h5>
-
     <form method="POST">
         <div>
             {% csrf_token %}
             {{ ticket_form | crispy }}
         </div>
-        <button class="btn btn-dark mb-5 btn-lg" type="submit">Submit</button>
+        <button class="btn btn-success mb-5 btn-lg" type="submit">Submit</button>
+    </form>
 </div>
 
-</form>
 
 {% if form.errors %}
 <ul>
@@ -27,7 +27,5 @@
     {% endfor %}
 </ul>
 {% endif %}
-</div>
-
 
 {% endblock content %}

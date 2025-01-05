@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<!--Introduction text-->
 <h5 class="text-center mt-2 subtitle">Select the phone model to book your repair</h5>
 
 <div class="container text-center">
@@ -13,8 +14,8 @@
    </p>
 </div>
 
+<!--Search form-->
 <section class="container-fluid">
-   <!--Search form-->
    <div class="row justify-content-center">
       <div class="col">
          <form class="form-inline justify-content-center">
@@ -29,12 +30,12 @@
    </div>
 </section>
 
+<!--Show all phone models-->
 <section class="container-fluid">
    <div class="phone row justify-content-center">
 
       {% for phone in phones %}
 
-      <!--Show all phone models-->
       <a href="{% url 'create_ticket' phone.slug %}"
          class="data-manufacturer col-md-2 p-3 m-3 phone-model-card border rounded phone text-decoration-none"
          data-manufacturer="{{ phone.manufacturer }}">

@@ -132,9 +132,7 @@ This sprint I started with the pending work left from the previous sprint, namel
 
 I have been testing throughout the project, but in this phase some bigger changes needed to be made:
 - From my testing, I discovered that it was possible to register without entering the password. This was working before, but perhaps by changing the authentication to custom something broke. I spoke to the tutor support team and they suggested me not to play around with these setting and keeping the authentication as it is in Django. As this was a bit of a last minute thing. I decided to revert to the Authentication method of Django and add a email field in the request itself. For the future I would like to use ALLAUTH method to make the email mandatory.
-
 - There was a horizontal scroll bar appearing. This was because the footer was going of frame. I made the changes so that everything fits nicely on the screen.
-
 - I was not fully happy with my navigation. I decided to reorganise this with a Bootsrap navigation with a dropdown for the login/logout part.
 
 
@@ -160,15 +158,18 @@ From the points mentioned above, I learnt how important it is to define the data
     * My footer was going out of frame, because of this all pages had a horizontal scroll bar. With the help of Bootstrap Grid system I managed to get this sorted.
     * My hamburger was not colapsing on smaller screens. Again, with the help of Bootstrap navigation, which I copied and pasted from the Bootstrap website, I managed to make it my own with the functionality working.
     * The form layout would not come the best. The fields would not be equally long horizontally. Adding the class form-control and widgets to the form improved the layout drastically. I read about the form-helper and would want to use that in a later stage.
+    * Hamburger not on the right end. I added the classed offset which made the hamburger menu go all the way to the right. This was a grid of 10 so I added a offset of 9 to avoid this going out of frame.
 
 From this part I learnt that Bootstrap is very helpful in defining the margins and that the the grid system is a nice way to structure the layout. I started customizing alot myself. I ended up with using Bootstrap more and more. For example, I was not fully satisfied with my navigation. Then I went to Bootstrap and got one from there, combining my own work. For the alert messages, the modal on delete I used Bootstrap. Some of the layouts I ended up using Bootstrap classes - margins and paddings. For those I believe that a css would be a better solution for the maintainability.
 
 * Others
     * The biggest issue I had was with creating a ticket. After selecting the phonemodel the value was passed to the next screen as a slug. I wanted to retrieve the id and pass this to the phonemodel field, without having the customer to reselect the phonemodel in the dropdown. I was able to create a ticket if the phonemodel would be visible on the screen and I would select it. Otherwise the value passed would be NULL. Not knowing why this was happening, it took me two days, to get help and figure out that I only needed to remove "_" in my phonemodel as was writing it as phone_model. I needed to use the field name while I was using a variable. Before this I tried everything, the Args and Kwargs method, passing the value as instance, making changes in the form and much more..
-    * I created a ticketForm for adding a ticket and I removed the phonemodel fiekd. The issue here would be that in the edit form the user would not be able to change the phonemodel in the ticket. In this case I wanted to play around with the conditions to disable and enable the field based on the request type. As I had little time, I decided to copy the form and call editTicketForm. In this form I enabled the phonemodel field. The functionality here is working and I am reaching my goal. Looking at reusing the code, I believe this could be done more efficiently. 
+    * I created a ticketForm for adding a ticket and I removed the phonemodel field. The issue here would be that in the edit form the user would not be able to change the phonemodel in the ticket. In this case I wanted to play around with the conditions to disable and enable the field based on the request type. As I had little time, I decided to copy the form and call editTicketForm. In this form I enabled the phonemodel field. The functionality here is working and I am reaching my goal. Looking at reusing the code, I believe this could be done more efficiently. 
     * I added three buttons "Samsung" and "Apple" and "All phones" in the book repair. I applied filters to them. For this part I used the js file. The filter worked fine for all phones, but not for the two other categories. In a call with my mentor we decided that this is a nice to have feature as I already have a filter on my screen. To save me some time finding the root-cause it is better to remove it for now. I have added this to my future enhancements. 
     * The filter in the book repair was bound to the series field. This would not always show the correct values as if someone looks for Samsung no values would be returned. I changed this to the slug field the search improved. 
     * After adding a search query in the field the text would not be visible and appear as blank, while the search would be working fine. I added the value attribute in the book repair template and this solved the issue.
+    * I wanted to have multiple urls to be linked to the same navigation item. I was not able to do so with the url path. As a way around I managed to solve this by adding the name path in a with loop {% with request.resolver_match.url_name as url_name %}.
+    * Modal not reacting on the form. I solved this by moving the modal into the form tags
 
 In this part I learnt using Flask. Learnt the power of Views and the importance of defining good urls. Django is a very powerful Framework and needs precise work. Some typos made my progress slow. Sometimes it was not knowing how to reuse code. All together I believe I managed to setup a good project. With still a very large learning curve left. I can say I know the basics, I got a understanding of how to use documentation (Django, Bootstrap). 
 
@@ -184,6 +185,8 @@ In the little time frame that I had I managed to complete a MVP with the CRUD fu
 - Enable user profile where the user can edit their personal information.
 - Remove the email field from request, instead make this in the User table mandatory
 - Add more graphics, such as the Samsung and Apple logo
+- Add delete button on the details screen to make it easier to delete the request in one click.
+- Add notes option only for the Admin so that notes can be added by the technician.
 
 
 ## Testing
