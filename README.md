@@ -19,6 +19,55 @@ During this project the focus will be on the device type: phones. As these categ
 4. Option to login and check the status as the user
 
 
+### Wireframes
+
+
+#### Home
+
+Wireframe home desktop  
+![wireframe-home-desktop](docs/wireframe_home_desktop.png)  
+
+Wireframe home mobile  
+![wireframe-home-mobile](docs/wireframe_home_mobile.png)  
+
+
+#### Book repair
+
+Wireframe book repair desktop  
+![wireframe-book-repair-desktop](docs/wireframe_book_repair_desktop.png)  
+
+Wireframe book repair mobile  
+![wireframe-book-repair-mobile](docs/wireframe_book_repair_mobile.png)  
+
+
+#### Create/ Edit ticket
+
+Wireframe create/edit ticket desktop  
+![wireframe-create-edit-ticket-desktop](docs/wireframe_create_edit_ticket_desktop.png)  
+
+Wireframe Create/edit ticket mobile  
+![wireframe-create-edit-ticket-mobile](docs/wireframe_create_edit_ticket_mobile.png)  
+
+
+#### Ticket details
+
+Wireframe ticket details desktop  
+![wireframe-ticket-details-desktop](docs/wireframe_ticket_details_desktop.png)  
+
+Wireframe ticket details mobile  
+![wireframe-ticket-details-mobile](docs/wireframe_ticket_details_mobile.png)  
+
+
+#### Login, Logout, Register
+
+Wireframe login, logout, register desktop  
+![wireframe-login-logout-register-desktop](docs/wireframe_login_logout_register_desktop.png)  
+
+Wireframe login, logout, register  mobile  
+![wireframe-login-logout-register-ticket-mobile](docs/wireframe_login_logout_register_mobile.png)  
+
+
+
 ## The model
 
 ### Data model
@@ -61,6 +110,7 @@ Each phone has a different price for the part. Therefore, I created this table. 
 |Key|Name|Type|Extra info|
 |---|----|----|----------|
 |Primary Key|ticket_number|Charfield|Unique|
+|||email|emailfield||
 |Foreign Key|phonemodel|Phonemodel||
 |Foreign Key|customer|User||
 |Foreign Key|broken_part| Part||
@@ -76,6 +126,9 @@ This is the build in table of Django. I used this for authentication purposes.
 ## Agile 
 
 ### Project phases
+
+In this project I have worked with phases. I have created pbi's using GitHub. 
+
 |Phase|Start date|End date|Description|
 |-----|----------|--------|-----------|
 |0|10/12|14/12|Project preparation|
@@ -136,7 +189,85 @@ I have been testing throughout the project, but in this phase some bigger change
 - I was not fully happy with my navigation. I decided to reorganise this with a Bootsrap navigation with a dropdown for the login/logout part.
 
 
-## Deployment
+## Screens explained
+
+### Home  
+
+The goal of the home page is to provide the user with general information about the company and its service. This is purely informative. 
+
+
+### Book Repair  
+
+This screen consists of a short introduction with a search option. User can select a phonemodel. After selecting the phone model the user is redirected to fill in the form.  
+
+![home-screen](docs/home)  
+
+### Create Ticket
+
+The user can fill in a form and submit the request for a ticket. User has to login to create a ticket.  
+
+![book-repair-screen](docs/book_repair_desktop.png)
+
+
+### Confirmation screen
+
+Upon submitting a request the user is led to a confirmation screen with the details. The goal of this screen is to provide the user with feedback and what he/she can do next.  
+
+![confirmation](docs/confirmation_desktop.png)
+
+### Ticket details
+
+The submitted tickets can be found here. User needs to be authenticated.  
+
+![ticket-details-screen](docs/ticket_details_desktop.png.png)
+
+
+### Edit ticket
+
+User can update and delete the ticket from this screen. From the ticket details screen the ticket ID is passed. The data is retrieved based on this ID.
+
+![edit-ticket-screen](docs/edit_ticket_desktop.png.png)
+
+## Deployment 
+
+The following steps were followed for the deployment
+
+Initial deployment
+
+* Create repository in GitHub using the Code Institute template
+* Open the Gitpod workspace
+* Setting up the workspace
+* Create a project
+	* django-admin startproject Smart Tech
+* Create a app
+	* python3 manage.py startapp Book_Repair
+* Install requirements:
+	* pip install django 3.2
+	* pip install gunicorn
+	* pip install dj_database_url_psycopg2
+* Create requirements list
+	* pip freeze -- local > requirements.txt
+* Add app to the installed apps in setting.py
+* Migrate changes by: python3 manage.py migrate
+* Test server by running command: python3 manage.py runserver
+
+Create Heroku App
+
+* Click on create new app
+* Give it a unique name
+* Select a location, in my case Europe
+* Add variables: Secret Key, Database name with the key and value
+
+
+Setting.py file
+* Configure Secret Key and Database
+* Add template dir
+* Add allowed host with command: ALLOWED_HOSTS = ["PROJECT_NAME.herokuapp.com", "localhost"]
+* Create procfile: web: gunicorn PROJECT_NAME.wsgi
+
+* Make an initial commit
+* Deploy the app in Heroku and test it
+
 
 ## Bugs fixes and lessons learnt
 
@@ -191,7 +322,152 @@ In the little time frame that I had I managed to complete a MVP with the CRUD fu
 
 ## Testing
 
+Testing has been conducted using Lighthouse, W3C HTML validator, W3C CSS validator, CI Python Linter and manually going through the website. The results can be found below.
 
-## Wireframes
+### Lighthouse results
+
+The overal score looked good for this part. The results for each page can be seen below. This test has the pages on performance, accesibility, best practices and SEO.
+
+#### SEO  
+The score for this part was for all pages 90%. The argument for this was that there were no meta tags added to the head element. I boosted the score to a full 100% by adding the meta tags for the head element. The score for all pages has gone to 100% after adding the SEO.  
 
 
+SEO score before  
+![seo-score](docs/lighthouse_seo_score.png)  
+
+SEO score after  
+![seo-score](docs/lighthouse_seo_score_after.png)  
+
+
+#### Best Practices  
+The overal score for best practices is 100%. No changes have been made
+
+![seo-score](docs/lighthouse_best_practices_score.png)  
+
+
+#### Performance
+For most of the pages the score is above 90% with some going 1% below that. The reason for this is that I have not used the webmp format for the picture.  
+
+![performance-score](docs/lighthouse_performance_score.png)  
+
+
+#### Accesibility
+The score for this is above 90% for all pages. The reason why this is not a full 100% is because of the color contrast. with the background. I could give this a boost by going more into depth with that, but I was pretty happy with the colors. The second part was about not having a discernible name/ unique name for all elements. These could be a good improvement point, which I havent picked up for the time being.
+
+![accesibility-score](docs/lighthouse_accesibility_score.png)  
+
+#### Home  
+Desktop  
+![lighthouse-home-desktop](docs/lighthouse_home_desktop.png)  
+Mobile  
+![lighthouse-home-mobile](docs/lighthouse_home_mobile.png)  
+
+
+#### Book Phonemodels  
+Desktop  
+![lighthouse-phonemodels-desktop](docs/lighthouse_phonemodels_desktop.png)  
+Mobile  
+![lighthouse-phonemodels-mobile](docs/lighthouse_phonemodels_mobile.png)  
+
+
+#### Create ticket  
+Desktop  
+![lighthouse-create-ticket-desktop](docs/lighthouse_createticket_desktop.png)  
+Mobile  
+![lighthouse-create-ticket-mobile](docs/lighthouse_createticket_mobile.png)  
+
+
+#### Ticket confirmation  
+Desktop  
+![lighthouse-ticket-confirmation-desktop](docs/lighthouse_confirmation_desktop.png)  
+Mobile  
+![lighthouse-ticket-confirmation-mobile](docs/lighthouse_confirmation_mobile.png)  
+
+#### Ticket details   
+Desktop  
+![lighthouse-ticket-details-desktop](docs/lighthouse_createticket_desktop.png)  
+Mobile  
+![lighthouse-ticket-details-mobile](docs/lighthouse_createticket_mobile.png)  
+
+
+#### Edit ticket    
+Desktop  
+![lighthouse-edit-ticket-desktop](docs/lighthouse_edit_ticket_desktop.png)  
+Mobile  
+![lighthouse-edit-ticket-mobile](docs/lighthouse_edit_ticket_mobile.png)  
+
+
+#### Login  
+Desktop  
+![lighthouse-login-desktop](docs/lighthouse_login_desktop.png)  
+Mobile  
+![lighthouse-login-mobile](docs/lighthouse_login_mobile.png)
+
+
+#### Logout  
+Desktop  
+![lighthouse-logout-desktop](docs/lighthouse_logout_desktop.png)  
+Mobile  
+![lighthouse-logout-mobile](docs/lighthouse_logout_mobile.png)
+
+
+#### Register  
+Desktop  
+![lighthouse-register-desktop](docs/lighthouse_register_desktop.png)  
+Mobile  
+![lighthouse-register-mobile](docs/lighthouse_register_mobile.png)
+
+
+### W3C HTML Validator
+
+Minor issues where found and fixed during the testing of this part. 
+
+Home  
+![w3c-html-validator-home](docs/html_validator_home.png)  
+
+
+### W3C CSS Validator
+
+No errors where found in the CSS validator    
+![w3c-css-validator](docs/css_validator.png)  
+
+### CI Python Linter
+
+All files have been checked. As I checked on this part throughout the project. No surprises where found. Just on two places the an issue with missing semicolon, which was easy to correct.
+
+
+![w3c-css-validator](docs/css_validator.png)  
+
+Admin file - missing semicolon    
+![ci-python-linter-admin](docs/python_linter_admin_result.png)  
+
+
+Form file - all clear  
+![ci-python-linter-forms](docs/python_linter_forms_result.png)  
+
+
+URL file - all clear  
+![ci-python-linter-url](docs/python_linter_url_result.png)  
+
+
+Model file - all clear  
+![ci-python-linter-forms](docs/python_linter_model_result.png)  
+
+Views file - all clear  
+![ci-python-linter-views](docs/python_linter_views_result.png)  
+
+
+Setting file - minor issues with blank lines and long lines  
+
+![ci-python-linter-settings](docs/python_linter_settings_result.png)  
+
+![ci-python-linter-settings-after](docs/python_linter_settings_result_after.png)  
+
+
+#### Manual testing
+
+* I have submitted quite a lot of ticket request to check if everything goes fine
+* I have edited and deleted tickets for testing
+* I have created diferent users and checked the ticket details screen if the logged in user is only able to see its own tickets.
+* I have checked if my app is responsive.
+* I have checked my pbi's and if all must haves are met. These can be found in GitHub

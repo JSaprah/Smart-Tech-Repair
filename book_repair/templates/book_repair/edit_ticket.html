@@ -8,7 +8,7 @@
 <!--Button trigger modal-->
 <div class="container mt-2">
 
-<!--Edit form-->
+  <!--Edit form-->
   <form method="post">
     {% csrf_token %}
     {{ ticket_form | crispy }}
@@ -53,6 +53,5 @@
   {% endfor %}
 </ul>
 {% endif %}
-</div>
 
 {% endblock content %}
