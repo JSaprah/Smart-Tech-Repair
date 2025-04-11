@@ -93,6 +93,7 @@ def ticket_details(request):
         )
 
 
+@login_required
 def edit_ticket(request, id):
     """
     This view takes the id from the ticket details.
@@ -101,29 +102,47 @@ def edit_ticket(request, id):
 
     ticket = get_object_or_404(Ticket, id=id)
 
+    if ticket.requester != request.user:
+        messages.add_message(request, messages.ERROR, 'You are not authorized to access this ticket.')
+        return redirect('ticket_details')
+
     if request.method == 'POST':
         action = request.POST.get('action')
 
-        ticket_form = EditTicketForm(request.POST, instance=ticket)
+        if action == 'update':
+            ticket_form = EditTicketForm(request.POST, instance=ticket)
 
-        if action == 'update' and ticket_form.is_valid():
-            ticket_form.save()
-            messages.add_message(
-                request, messages.SUCCESS, 'Ticket updated succesfully!'
+            if ticket_form.is_valid():
+                ticket_form.save()
+                messages.add_message(
+                    request, messages.SUCCESS, 'Ticket updated successfully!'
                 )
-            return redirect('ticket_details')
+                return redirect('ticket_details')
+
+            else:
+                messages.add_message(
+                    request, messages.ERROR, 'Ticket could not be updated.'
+                )
+                return redirect('ticket_details')
 
         elif action == 'delete':
-            ticket.delete()
-            messages.add_message(
-                request, messages.SUCCESS, 'Ticket deleted succesfully!'
+
+            if ticket.requester == request.user:
+                ticket.delete()
+                messages.add_message(
+                    request, messages.SUCCESS, 'Ticket deleted successfully!'
                 )
-            return redirect('ticket_details')
+                return redirect('ticket_details')
+            else:
+                messages.add_message(
+                    request, messages.ERROR, 'You are not authorized to delete this ticket.'
+                )
+                return redirect('ticket_details')
 
         else:
             messages.add_message(
-                request, messages.ERROR, 'Changes could not be saved'
-                )
+                request, messages.ERROR, 'Invalid action.'
+            )
             return redirect('ticket_details')
 
     else:
@@ -132,8 +151,9 @@ def edit_ticket(request, id):
     return render(
         request, 'book_repair/edit_ticket.html', {
             'ticket_form': ticket_form, 'ticket': ticket
-            }
-        )
+        }
+    )
+
 
 
 def confirmation(request, ticket_number):

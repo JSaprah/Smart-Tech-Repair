@@ -466,8 +466,92 @@ Setting file - minor issues with blank lines and long lines
 
 #### Manual testing
 
-* I have submitted quite a lot of ticket request to check if everything goes fine
-* I have edited and deleted tickets for testing
-* I have created diferent users and checked the ticket details screen if the logged in user is only able to see its own tickets.
-* I have checked if my app is responsive.
-* I have checked my pbi's and if all must haves are met. These can be found in GitHub
+##### Functional Testing
+
+###### Home Screen
+The home screen serves as a welcoming introduction for users, showcasing Smart Tech as their trusted partner for all phone repair needs. It delivers clarity and focus, ensuring visitors immediately understand the breadth and quality of services offered.
+
+Core Features:
+
+* Introduction to Repair Services: The home screen communicates the essence of Smart Tech with clear messaging about its fast, reliable, and high-quality repair solutions. It emphasizes customer satisfaction, efficient service, and transparent pricing.
+
+* Highlighting Key Benefits: Users are introduced to unique selling points, including same-day repairs, 12-month warranties, competitive pricing, and over 10 years of industry expertise.
+
+* Discover Us: Information about the shop's location and contact details is prominently displayed, making it easy for customers to reach out and connect.
+
+* Visual Appeal: The design incorporates a user-friendly layout with professional visuals, ensuring visitors feel assured of the company's credibility.
+
+This screen sets the tone for the rest of the application, encouraging users to explore further and utilize the repair services offered. Let me know if you'd like to refine any particular section!
+
+
+I tested the home screen, ensuring it clearly introduces users to the company's repair services. The layout is intuitive, and the messaging is straightforward and engaging. Users are provided with all the essential information to understand our offerings at a glance.
+
+###### Book repair
+
+The booking screen is designed to simplify the process of selecting a phone model for repair. It serves as a key interaction point for users who want to book repair services for their devices.
+
+Core Features:
+
+* Phone Model Selection: The screen showcases all Samsung and iPhone models currently available in the database. Users can browse through these models and select the one needing repair.
+
+* Search Functionality: A search bar allows users to quickly find a specific phone model by entering its name, making the selection process fast and user-friendly.
+
+* Streamlined Navigation: Once a model is selected, users are redirected to a form where they can enter details and submit a repair ticket.
+
+
+I tested the booking screen by selecting various phone models for repair, including all Samsung and iPhone models added to the database. The models were correctly listed and selectable. The search functionality was thoroughly checked by entering queries for specific models, ensuring users could find their desired devices quickly and easily. The search results were accurate and responsive. Once a model was selected, the app smoothly transitioned to the form submission screen without errors.
+
+
+###### Create ticket
+
+* I submitted multiple ticket requests across different phone models to verify the creation process. Each ticket was properly registered, and the confirmation screen displayed the correct details. 
+
+* For robustness, I tested scenarios like incomplete form submissions or invalid entries, and the app handled these cases gracefully by providing error messages.
+
+* An empty form was present on selecting a phone. 
+
+* The form was submitted upon clicking the submission button. 
+
+* The user was led to the confirmation screen, confirming the submission.
+
+* The ticket was created in the database and present in the order history.
+
+
+###### Ticket details
+
+* I tested the ticket details screen to ensure that logged-in users could only view their own tickets. This was verified by creating tickets under different user accounts and confirming that tickets belonging to other users were not accessible.
+
+* The functionality for viewing ticket information such as ticket number, service type, status, IMEI, and description was confirmed to be accurate and responsive.
+
+* I also checked that the "Edit" and "Delete" options were visible only for the tickets owned by the logged-in user and performed ownership validation.
+
+
+###### View/ edit delete ticket (CRUD functionality)
+* Edit and Delete Operations: I tested the functionality to edit and delete tickets. Changes were applied successfully, and deletion removed tickets from the database as expected.
+
+* Ownership checks were verified by ensuring only the logged-in user who created the ticket could edit or delete their own tickets.
+
+* User Validation: Multiple user accounts were created and tested to ensure data isolation. Logged-in users were only able to view and manage their own tickets, and unauthorized access was appropriately restricted. After getting feedback from assesors I managed to add extra functionality to make sure that upon sending the url a different user cannot view, edit or delete the tickets. 
+
+##### Responsiveness Testing
+The application's responsiveness was thoroughly tested across multiple devices and screen sizes, ensuring smooth user experience for desktop, tablet, and mobile users.
+
+##### Performance Testing
+Various performance benchmarks were checked to ensure that the app responds efficiently under heavy load (multiple tickets or concurrent user sessions).
+
+##### Product Backlog Items (PBIs) Validation
+All PBIs marked as must-haves were checked against the implemented features and functionality. Details of these checks and validations are documented and available on GitHub.
+
+|Functionality| Status|
+|--------------|------|
+|Register| Pass|
+|Login| Pass|
+|Logout| Pass|
+|Create a new ticket/ book repair| Pass|
+|Read a created ticket/ order history| Pass|
+|Udate a created ticket/ edit booking| Pass|
+|Delete a created ticket/ delete booking| Pass|
+|View a list of the phone models|Pass|
+|Select a phone model for repair| Pass|
+|Search for a phone model for repair| Pass|
+
