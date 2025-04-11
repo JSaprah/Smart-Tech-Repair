@@ -200,7 +200,7 @@ The goal of the home page is to provide the user with general information about 
 
 This screen consists of a short introduction with a search option. User can select a phonemodel. After selecting the phone model the user is redirected to fill in the form.  
 
-![home-screen](docs/home)  
+![home-screen](docs/home_desktop.png)  
 
 ### Create Ticket
 
