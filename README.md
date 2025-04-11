@@ -73,7 +73,7 @@ Wireframe login, logout, register  mobile
 ### Data model
 The models consists of five classes. I havent used the class service for this project, but left it in the project for future enhancements.
 
-![data-model](docs/data-model.PNG)
+![data-model](docs/data-model.png)
 
 
 ### The classes
